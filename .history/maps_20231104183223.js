@@ -6,8 +6,7 @@ window.onload = function() {
             const lng = position.coords.longitude;
             // document.getElementById('lat').textContent = lat;
             // document.getElementById('lng').textContent = lng;
-            // set the map view to the lat/long
-            map.setView([lat, lng], 10);
+            
         }
         );
     }
@@ -51,12 +50,6 @@ window.onload = function() {
         data.hospitals.forEach(facility => {
         const marker = L.marker([facility.coords.x, facility.coords.y]).addTo(map);
         marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
-        // add a popup not attached to a marker
-        // const popup = L.popup()
-        // .setLatLng([facility.coords.x, facility.coords.y])
-        // .setContent(`<b>${facility.name}</b><br>${facility.address}<br>`)
-        // .openOn(map);
-
         });
     });
     };

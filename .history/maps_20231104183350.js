@@ -51,13 +51,9 @@ window.onload = function() {
         data.hospitals.forEach(facility => {
         const marker = L.marker([facility.coords.x, facility.coords.y]).addTo(map);
         marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
-        // add a popup not attached to a marker
-        // const popup = L.popup()
-        // .setLatLng([facility.coords.x, facility.coords.y])
-        // .setContent(`<b>${facility.name}</b><br>${facility.address}<br>`)
-        // .openOn(map);
-
         });
+        // add a stand alone marker for the current location
+        const marker = L.marker([42.7291949, -73.6795041]).addTo(
     });
     };
 

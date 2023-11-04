@@ -52,10 +52,7 @@ window.onload = function() {
         const marker = L.marker([facility.coords.x, facility.coords.y]).addTo(map);
         marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
         // add a popup not attached to a marker
-        // const popup = L.popup()
-        // .setLatLng([facility.coords.x, facility.coords.y])
-        // .setContent(`<b>${facility.name}</b><br>${facility.address}<br>`)
-        // .openOn(map);
+        
 
         });
     });
