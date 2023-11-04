@@ -1,0 +1,25 @@
+:root {
+    --theme-0: #D9D9D9;
+    --theme-1: #BD1E1E;
+    --theme-2: #d46161;
+}
+
+
+body {
+    color: var(--theme-0);
+    background-color: var(--theme-0);
+    height: 100vh;
+    margin: 0;
+}
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    height: 10vh;
+    background-color: var(--theme-2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+}
