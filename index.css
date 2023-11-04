@@ -54,6 +54,10 @@ body {
     color: var(--theme-0);
 }
 
+span.bold{
+    font-weight: 600;
+}
+
 #emergency-button{
     margin-right: 30px;
     background-color: var(--theme-2);
@@ -103,5 +107,54 @@ body {
 
 #content button:hover{
     background-color: var(--theme-1);
+    color: var(--theme-0);
+}
+
+#hospitals{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#hospital-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* margin: 0 0 0 30px; */
+}
+
+.hospital{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0 0 20px 0;
+    width: 500px;
+    height: 70px;
+    background-color: var(--theme-1);
+    border-radius: 20px;
+}
+
+.hospital-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 0 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--theme-0);
+}
+
+.hospital-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    margin: 0 0 0 20px;
+    font-size: 16px;
+    font-weight: 100;
     color: var(--theme-0);
 }
