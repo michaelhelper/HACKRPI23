@@ -1,7 +1,7 @@
 :root {
     --theme-0: #D9D9D9;
     --theme-1: #202020;
-    --theme-2: #BD1E1E;
+    --theme-2: #a30000;
     --theme-3: #d46161;
 }
 
@@ -13,7 +13,7 @@ body {
     margin: 0;
     font-family: 'Inter';
 }
-#nav-container {
+.nav-container {
     height: 90px;
     display: flex;
     flex-direction: row;
@@ -25,7 +25,7 @@ body {
     z-index: 1000;
 }
 
-#nav-container h1{
+.nav-container h1{
     display: flex;
     align-items: center;
     font-size: 3em;
@@ -34,11 +34,11 @@ body {
     margin: 0 0 0 30px;
 }
 
-#nav-container button{
+.nav-container button{
     background-color: var(--theme-0);
     justify-self: flex-end;
     cursor: pointer;
-    margin: 0 30px 0 0;
+    margin: 0 20px 0 0;
     padding: 0;
     font-size: 12px;
     font-weight: 400;
@@ -47,8 +47,84 @@ body {
     border-radius: 20px;
     width: 120px;
     height: 40px;
-
 }
+
+.nav-container button:hover{
+    background-color: var(--theme-1);
+    color: var(--theme-0);
+}
+
+span.bold{
+    font-weight: 600;
+}
+
+#emergency-button{
+    margin-right: 30px;
+    background-color: var(--theme-2);
+    color: var(--theme-1);
+    color: var(--theme-0)
+}
+
+#emergency-button:hover{
+    background-color: var(--theme-1);
+    color: var(--theme-0);
+}
+
+#content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 90px);
+}
+
+#content input{
+    width: 300px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 0 20px 0;
+}
+
+#content button{
+    background-color: var(--theme-3);
+    cursor: pointer;
+    margin: 0 0 0 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    width: 60px;
+    height: 40px;
+    color: var(--theme-0);
+}
+
+#content button:hover{
+    background-color: var(--theme-1);
+    color: var(--theme-0);
+}
+
+#hospitals{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#hospital-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* margin: 0 0 0 30px; */
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -58,4 +134,37 @@ html, body {
     width: 600px;
     max-width: 100%;
     max-height: 100%;
+}
+.hospital{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0 0 20px 0;
+    width: 500px;
+    height: 70px;
+    background-color: var(--theme-1);
+    border-radius: 20px;
+}
+
+.hospital-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 0 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--theme-0);
+}
+
+.hospital-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    margin: 0 0 0 20px;
+    font-size: 16px;
+    font-weight: 100;
+    color: var(--theme-0);
 }
