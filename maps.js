@@ -13,6 +13,40 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
     return distance;
 }
 
+const hospitals = [
+    {
+        name: "Hospital 1",
+        distance: "4.8 mi",
+        time: "13 mins",
+        wait: "1hr 40 min"
+    },
+    {
+        name: "Hospital 2",
+        distance: "5.2 mi",
+        time: "15 mins",
+        wait: "1hr 20 min"
+    },
+    // Add more hospitals as needed
+];
+
+function createHospitalElement(hospital) {
+    const hospitalElement = document.createElement("div");
+    hospitalElement.classList.add("hospital");
+
+    const nameElement = document.createElement("p");
+    nameElement.classList.add("hospital-name");
+    nameElement.textContent = hospital.name;
+
+    const infoElement = document.createElement("p");
+    infoElement.classList.add("hospital-info");
+    infoElement.innerHTML = `<span id="bold">Distance:</span> ${hospital.distance} | <span id="bold">Time:</span> ${hospital.time} | <span id="bold">Wait:</span> ${hospital.wait}`;
+
+    hospitalElement.appendChild(nameElement);
+    hospitalElement.appendChild(infoElement);
+
+    return hospitalElement;
+}
+
 
 window.onload = function() {
     // get current location
@@ -60,6 +94,32 @@ window.onload = function() {
         await convertZipCode(l1,l2);
         console.log(`The latitude is ${l1} and the longitude is ${l2}`);
         // You can save location.lat and location.lng to a variable or perform other actions here.
+ 
+const hospitals = [
+    {
+        name: "Hospital 1",
+        distance: "4.8 mi",
+        time: "13 mins",
+        wait: "1hr 40 min"
+    },
+    {
+        name: "Hospital 2",
+        distance: "5.2 mi",
+        time: "15 mins",
+        wait: "1hr 20 min"
+    },
+    // Add more hospitals as needed
+];
+      
+      const hospitalList = document.getElementById('hospital-list');
+        hospitalList.innerHTML = '';
+
+        // Add each hospital to the hospital-list
+        hospitals.forEach(hospital => {
+            const hospitalElement = createHospitalElement(hospital);
+            hospitalList.appendChild(hospitalElement);
+        });
+
       } catch (error) {
         console.error('An error occurred:', error);
       }
