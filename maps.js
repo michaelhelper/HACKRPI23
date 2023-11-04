@@ -31,10 +31,20 @@ window.onload = function() {
             map.setView([lat, lng], 11);
             alert(`The latitude is ${lat} and the longitude is ${lng}`);
             });
+        return { lat, lng };
     }
+
     // Attach the function to the button's click event
     const convertButton = document.getElementById('search-button');
-    convertButton.addEventListener('click', convertZipCode);
+    convertButton.addEventListener('click', async () => {
+      try {
+        const location = await convertZipCode();
+        console.log(`The latitude is ${location.lat} and the longitude is ${location.lng}`);
+        // You can save location.lat and location.lng to a variable or perform other actions here.
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    });
 
 
 // ----------------------------------------------------------------------------
