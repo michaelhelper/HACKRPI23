@@ -1,0 +1,298 @@
+{
+    "hospitals": [
+        {
+            "name": "UVM - Champlain Valley",
+            "address": "75 Beekman St, Plattsburgh, NY 12901",
+            "coords": {
+                "x": 44.701361,
+                "y": -73.469439
+            },
+            "traumalvl": 3,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": true,
+            "PCI": true,
+            "burn": false
+        },
+        {
+            "name": "St. Peter's Hospital",
+            "address": "315 South Manning Boulevard, Albany, NY 12208",
+            "coords": {
+                "x": 42.655434,
+                "y": -73.803371
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "primary",
+            "perinatal": true,
+            "PCI": true,
+            "burn": false
+        },
+        {
+            "name": "Saratoga Hospital",
+            "address": "211 Church Street, Saratoga Springs, NY 12866",
+            "coords": {
+                "x": 43.085465,
+                "y": -73.797057
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "primary",
+            "perinatal": true,
+            "PCI": true,
+            "burn": false
+        },
+        {
+            "name": "St. Mary's Health",
+            "address": "427 Guy Park Avenue, Amsterdam, NY 12010",
+            "coords": {
+                "x": 42.954417,
+                "y": -74.215922
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": true,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "Albany Memorial",
+            "address": "600 Northern Boulevard, Albany, NY 12204",
+            "coords": {
+                "x": 42.673797,
+                "y": -73.748866
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "Samaritan Hospital",
+            "address": "2215 Burdett Avenue, Troy, NY 12180",
+            "coords": {
+                "x": 42.734253, 
+                "y": -73.672481
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "primary",
+            "perinatal": true,
+            "PCI": true,
+            "burn": false
+        },
+        {
+            "name": "Nathan Littauer Hospital",
+            "address": "99 East State Street, Gloversville, NY 12078",
+            "coords": {
+                "x": 43.070892, 
+                "y": -74.331564
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": true,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "Mary Imogene Bassett Hospital",
+            "address": "One Atwell Road, Cooperstown, NY 13326",
+            "coords": {
+                "x": 42.695975, 
+                "y": -74.923792
+            },
+            "traumalvl": 3,
+            "peds": false,
+            "stroke": "primary",
+            "perinatal": true,
+            "PCI": true,
+            "burn": false
+        },
+        {
+            "name": "Glens Falls Hospital",
+            "address": "100 Park Stree, Glen Falls, NY 12801",
+            "coords": {
+                "x": 43.307139, 
+                "y": -73.645720
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "primary",
+            "perinatal": true,
+            "PCI": true,
+            "burn": false
+        },
+        {
+            "name": "Albany Medical Center",
+            "address": "43 New Scotland Avenue, Albany, NY 12208",
+            "coords": {
+                "x": 42.653716, 
+                "y": -73.775164
+            },
+            "traumalvl": 1,
+            "peds": true,
+            "stroke": "comprehensive",
+            "perinatal": true,
+            "PCI": true,
+            "burn": false
+        },
+        {
+            "name": "Columbia Memorial",
+            "address": "71 Prospect Ave, Hudson, NY 12534",
+            "coords": {
+                "x": 42.246597, 
+                "y": -73.777156
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "primary",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "Ellis Hospital",
+            "address": "1101 Nott Street, Schenectady, NY 12308",
+            "coords": {
+                "x": 42.820691, 
+                "y": -73.916692
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "primary",
+            "perinatal": true,
+            "PCI": true,
+            "burn": false
+        },
+        {
+            "name": "Adirondack Med - Saranac Lake",
+            "address": "2233 State Route 86, Saranac Lake, NY 12983",
+            "coords": {
+                "x": 44.345761, 
+                "y": -74.142726
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": true,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "A.O. Fox Memorial",
+            "address": "One Norton Avenue, Oneonta, NY 13820",
+            "coords": {
+                "x": 42.456884, 
+                "y": -75.028544
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "A.O. Fox Memorial - Tri-Town",
+            "address": "43 Pearl Street West, Sidney, NY 13838",
+            "coords": {
+                "x": 42.304470, 
+                "y": -75.395672
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "Margaretville Hospital",
+            "address": "42084 State Highway 28, Margaretville, NY 12455",
+            "coords": {
+                "x": 42.146849, 
+                "y": -74.641894
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "Delaware Valley Hospital",
+            "address": "1 Titus Place, Walton, NY 13856",
+            "coords": {
+                "x": 42.164435, 
+                "y": -75.128405
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "Cobleskill Regional Hospital",
+            "address": "178 Grandview Drive, Cobleskill, NY 12043",
+            "coords": {
+                "x": 42.686641,
+                "y": -74.481814
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "O'Connor Hospital",
+            "address": "460 Andes Road, Delhi, NY 13753",
+            "coords": {
+                "x": 42.268210,
+                "y": -74.916112
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "UVM - Alice Hyde Medical Center",
+            "address": "133 Park Street, Malone, NY 12953",
+            "coords": {
+                "x": 44.856901,
+                "y": -74.291305
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        },
+        {
+            "name": "UVM - Elizabethtown Community Hospital",
+            "address": "75 Park Street, Elizabethtown, NY 12932",
+            "coords": {
+                "x": 44.216029,
+                "y": -73.596292
+            },
+            "traumalvl": 5,
+            "peds": false,
+            "stroke": "none",
+            "perinatal": false,
+            "PCI": false,
+            "burn": false
+        }
+    ]
+}
