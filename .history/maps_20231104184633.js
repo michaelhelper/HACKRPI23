@@ -7,7 +7,7 @@ window.onload = function() {
             // document.getElementById('lat').textContent = lat;
             // document.getElementById('lng').textContent = lng;
             // set the map view to the lat/long
-            map.setView([lat, lng], 11);
+            map.setView([lat, lng], 10);
         }
         );
     }
@@ -19,7 +19,7 @@ window.onload = function() {
     // Function to convert ZIP code to lat/long
     function convertZipCode() {
         // Get the ZIP code from the form
-        const zipCode = document.getElementById('search-input').value;
+        const zipCode = document.getElementById('').value;
         const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${apiKey}`;
       // query the API using fetch()
         fetch(geocodingUrl)
@@ -28,7 +28,7 @@ window.onload = function() {
             const lat = data.results[0].geometry.location.lat;
             const lng = data.results[0].geometry.location.lng;
             // set the map view to the lat/long
-            map.setView([lat, lng], 11);
+            map.setView([lat, lng], 10);
             alert(`The latitude is ${lat} and the longitude is ${lng}`);
             });
     }
@@ -39,7 +39,7 @@ window.onload = function() {
 
 // ----------------------------------------------------------------------------
     // create map
-    const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const map = L.map('map').setView([42.7291949, -73.6795041], 10);
     const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

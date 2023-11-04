@@ -7,7 +7,7 @@ window.onload = function() {
             // document.getElementById('lat').textContent = lat;
             // document.getElementById('lng').textContent = lng;
             // set the map view to the lat/long
-            map.setView([lat, lng], 11);
+            map.setView([lat, lng], 10);
         }
         );
     }
@@ -39,7 +39,7 @@ window.onload = function() {
 
 // ----------------------------------------------------------------------------
     // create map
-    const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const map = L.map('map').setView([42.7291949, -73.6795041], 10);
     const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
