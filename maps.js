@@ -33,7 +33,7 @@ window.onload = function() {
     // get location from zip code
     const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0'; // Replace with your Google Maps API key
     // Function to convert ZIP code to lat/long
-    function convertZipCode() {
+    function convertZipCode(l1, l2) {
         // Get the ZIP code from the form
         const zipCode = document.getElementById('search-input').value;
         const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${apiKey}`;
@@ -46,15 +46,18 @@ window.onload = function() {
             // set the map view to the lat/long
             map.setView([lat, lng], 11);
             alert(`The latitude is ${lat} and the longitude is ${lng}`);
-            return {lat, long};
+            l1 = lat;
+            l2 = lng;
             });
     }
 
     // Attach the function to the button's click event
     const convertButton = document.getElementById('search-button');
+    let l1 = 3.0;
+    let l2 = 4.0;
     convertButton.addEventListener('click', async () => {
       try {
-        const location = await convertZipCode();
+        await convertZipCode(l1,l2);
         console.log(`The latitude is ${location.lat} and the longitude is ${location.lng}`);
         // You can save location.lat and location.lng to a variable or perform other actions here.
       } catch (error) {
