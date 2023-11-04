@@ -46,8 +46,8 @@ window.onload = function() {
             // set the map view to the lat/long
             map.setView([lat, lng], 11);
             alert(`The latitude is ${lat} and the longitude is ${lng}`);
+            return {lat, long};
             });
-        return { lat, lng };
     }
 
     // Attach the function to the button's click event
