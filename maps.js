@@ -58,7 +58,7 @@ window.onload = function() {
     convertButton.addEventListener('click', async () => {
       try {
         await convertZipCode(l1,l2);
-        console.log(`The latitude is ${location.lat} and the longitude is ${location.lng}`);
+        console.log(`The latitude is ${l1} and the longitude is ${l2}`);
         // You can save location.lat and location.lng to a variable or perform other actions here.
       } catch (error) {
         console.error('An error occurred:', error);
