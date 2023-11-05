@@ -1,7 +1,4 @@
-require('dotenv').config();
-
-const token = process.env.OPENAI_API_KEY;
-
+const apiKey = process.env.OPENAI_API_KEY;
 
 tinymce.init({
   selector: 'textarea',  // Change this value according to your HTML
