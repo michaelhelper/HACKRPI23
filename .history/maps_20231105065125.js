@@ -1,6 +1,5 @@
 let user_lat = 61.217381;
 let user_lng = -149.863129;
-let theMap;
 
 
 // Function to convert ZIP code to lat/long
@@ -300,7 +299,7 @@ function allcodes(map){
 
 
 window.onload = function() {
-    theMap = L.map('map').setView([user_lat, user_lng], 11);
+    const map = L.map('map').setView([user_lat, user_lng], 11);
     // Get current location
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -309,7 +308,7 @@ window.onload = function() {
             user_lat = lat;
             user_lng = lng;
             // Set the map view to the lat/long
-            theMap.setView([lat, lng], 11);
+            map.setView([lat, lng], 11);
 			let userIcon = L.Icon.extend({
 				options: {
 					iconUrl: "./resources/images/person.png",
@@ -320,7 +319,7 @@ window.onload = function() {
 			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             
             //call allcodes
-            allcodes(theMap);
+            allcodes(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
@@ -328,12 +327,12 @@ window.onload = function() {
     }
 
     //call allcodes
-    allcodes(theMap);
+    allcodes(map);
 }
 
 function clickPress(event) {
     if (event.keyCode == 13) {
-        zipcode(theMap);
+        zipcode(map);
     }
 }
 

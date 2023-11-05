@@ -300,7 +300,7 @@ function allcodes(map){
 
 
 window.onload = function() {
-    theMap = L.map('map').setView([user_lat, user_lng], 11);
+    const theMap = L.map('map').setView([user_lat, user_lng], 11);
     // Get current location
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -328,12 +328,12 @@ window.onload = function() {
     }
 
     //call allcodes
-    allcodes(theMap);
+    allcodes(map);
 }
 
 function clickPress(event) {
     if (event.keyCode == 13) {
-        zipcode(theMap);
+        zipcode(map);
     }
 }
 
