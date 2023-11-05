@@ -1,4 +1,3 @@
-const api_key = "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"
 
 tinymce.init({
   selector: 'textarea',  // Change this value according to your HTML
@@ -9,7 +8,7 @@ tinymce.init({
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${api_key}`
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
