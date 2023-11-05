@@ -198,15 +198,31 @@ html, body {
     width: fit-content;
 }
 
-#get-directions{
-    display:flex;
+#drive {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0 0 0 0;
+    width: 450px;
+}
+
+#drive-time {
+    display: flex;
+    flex-direction: row;
+}
+
+#get-direction button{
+    display: block;
     justify-self: right;
+    justify-content: center;
+    align-items: center;
     background-color: var(--theme-3);
     cursor: pointer;
     margin: 0 0 0 0;
     padding: 0;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 28px;
+    font-weight: 600;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -215,6 +231,6 @@ html, body {
     color: var(--theme-0);
 }
 
-#get-directions:hover{
+#get-direction button:hover{
     background-color: var(--theme-2);
 }
