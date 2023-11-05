@@ -1,6 +1,5 @@
 let user_lat = 61.217381;
 let user_lng = -149.863129;
-const map = L.map('map').setView([user_lat, user_lng], 11);
 // Calculate the distance between two sets of coordinates using the Haversine formula.
 function calculateDistance(lat1, lng1, lat2, lng2) {
     const radius = 6371; // Earth's radius in kilometers
@@ -124,6 +123,7 @@ function allcodes(){
     const allHospitals = [];
     // Create map
     // const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

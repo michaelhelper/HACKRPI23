@@ -1,6 +1,5 @@
 let user_lat = 61.217381;
 let user_lng = -149.863129;
-const map = L.map('map').setView([user_lat, user_lng], 11);
 // Calculate the distance between two sets of coordinates using the Haversine formula.
 function calculateDistance(lat1, lng1, lat2, lng2) {
     const radius = 6371; // Earth's radius in kilometers
