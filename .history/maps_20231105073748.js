@@ -298,8 +298,7 @@ function allcodes(map){
         });
     console.log(newFinalArray);
     // sort the array by total time
-    while (newFinalArray.length < 5) {
-    }
+    while 
     newFinalArray.sort(function(a, b) {
         return a.totalWaitInMinutes - b.totalWaitInMinutes;
     });
