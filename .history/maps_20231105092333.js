@@ -353,8 +353,7 @@ function clickPress(event) {
 }
 
 function zipcode() {
-    // empty newFinalArray
-    newFinalArray = [];
+    All
     // Get the ZIP code from the form
     // const zipCode = document.getElementById('search-input').value;
     // alert(`The zip code is ${zipCode}`);
