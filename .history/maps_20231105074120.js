@@ -3,7 +3,6 @@ let user_lng = -149.863129;
 let theMap;
 let marker;
 let newFinalArray = [];
-let hospitalList = document.getElementById('hospital-list');
 
 
 // Function to convert ZIP code to lat/long
@@ -304,6 +303,7 @@ function allcodes(map){
     });
     for (let i = 0; i < 5; i++) {
         const hospitalElement = createHospitalElement(newFinalArray[i], map);
+        const hospitalList = document.getElementById('hospital-list');
         hospitalList.appendChild(hospitalElement);
     }
 }
