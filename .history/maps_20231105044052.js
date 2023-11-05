@@ -304,8 +304,7 @@ window.onload = function() {
 				}
 			});
 			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
-            //call allcodes
-            allcodes();
+            //c
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';

@@ -117,8 +117,35 @@ function createHospitalElement(hospital) {
     return hospitalElement;
 }
 
-function allcodes(){
-    
+
+
+
+window.onload = function() {
+
+
+    // Get current location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            user_lat = lat;
+            user_lng = lng;
+            // Set the map view to the lat/long
+            map.setView([lat, lng], 11);
+			let userIcon = L.Icon.extend({
+				options: {
+					iconUrl: "./resources/images/person.png",
+					iconSize: [48,48],
+					popupAnchor:  [0, 0]
+				}
+			});
+			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
+            const searchInput = document.getElementById('search-input');
+            searchInput.placeholder = 'Enter response here';
+        });
+
+    }
     // Initialize allHospitals array
     const allHospitals = [];
     // Create map
@@ -279,39 +306,4 @@ function allcodes(){
             });
             counter = counter + 1;
         });
-}
-
-
-
-
-window.onload = function() {
-
-
-    // Get current location
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            user_lat = lat;
-            user_lng = lng;
-            // Set the map view to the lat/long
-            map.setView([lat, lng], 11);
-			let userIcon = L.Icon.extend({
-				options: {
-					iconUrl: "./resources/images/person.png",
-					iconSize: [48,48],
-					popupAnchor:  [0, 0]
-				}
-			});
-			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
-            //call allcodes
-            allcodes();
-            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
-            const searchInput = document.getElementById('search-input');
-            searchInput.placeholder = 'Enter response here';
-        });
-
-    }
-    //call allcodes
-    allcodes();
 }
