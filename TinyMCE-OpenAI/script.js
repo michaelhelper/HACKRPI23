@@ -2,7 +2,6 @@ const api_key = "68r83o9poe4v486tnff0u32lv9esr7t53limuhtkbmuxm0n6"
 
    tinymce.init({
         selector: 'textarea',
-        ...//content omitted for brevity
         height: '700px',
                 ai_request: (request, respondWith) => {
                     const openAiOptions = {
