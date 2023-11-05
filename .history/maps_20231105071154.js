@@ -334,8 +334,7 @@ window.onload = function() {
             searchInput.placeholder = 'Enter response here';
         });
     }
-    // wait 10 ms before making the next request
-    setTimeout(function() {}, 100);
+    // wa
     //call allcodes
     allcodes(theMap);
 }
