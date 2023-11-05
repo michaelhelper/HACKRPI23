@@ -20,7 +20,6 @@ function createHospitalElement(hospital) {
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
     nameElement.textContent = hospital.name;
-    
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
@@ -63,6 +62,8 @@ function createHospitalElement(hospital) {
 
 window.onload = function() {
     // Create map
+    "x": 42.734253, 
+    "y": -73.672481
     const map = L.map('map').setView([47.7291949, -73.6795041], 11);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -227,6 +228,8 @@ window.onload = function() {
                             }
                             newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins"});
                             console.log(newFinalArray[counter]);
+                            const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins"});
+                            hospitalList.appendChild(hospitalElement);
 						})
                     }
                 });
@@ -261,9 +264,7 @@ window.onload = function() {
                 //     return a.totalTime - b.totalTime;
                 // });
                 // Add each hospital to the hospital-list
-                console.log(newFinalArray[counter]);
-                const hospitalElement = createHospitalElement(newFinalArray[counter]);
-                hospitalList.appendChild(hospitalElement);
+
                 
             });
             counter = counter + 1;

@@ -20,8 +20,6 @@ function createHospitalElement(hospital) {
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
     nameElement.textContent = hospital.name;
-    
-
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
 

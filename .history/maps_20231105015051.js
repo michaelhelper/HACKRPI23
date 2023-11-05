@@ -20,7 +20,6 @@ function createHospitalElement(hospital) {
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
     nameElement.textContent = hospital.name;
-    
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
@@ -218,8 +217,8 @@ window.onload = function() {
                                 let drivingTimeMinutes = parseInt(drivingTime.substring(0, 2));
                                 let waitTimeHours = parseInt(waitTime["wait"].substring(0, 1));
                                 let waitTimeMinutes = parseInt(waitTime["wait"].substring(3, 5));
-                                totalTimeHours = waitTimeHours;
-                                totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                                let totalTimeHours = waitTimeHours;
+                                let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
                                 if (totalTimeMinutes >= 60) {
                                     totalTimeHours = totalTimeHours + 1;
                                     totalTimeMinutes = totalTimeMinutes - 60;

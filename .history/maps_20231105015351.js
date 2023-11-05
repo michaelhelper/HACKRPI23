@@ -19,13 +19,16 @@ function createHospitalElement(hospital) {
 
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
-    nameElement.textContent = hospital.name;
-    
+    if (hospital && hospital.name) {
+        nameElement.textContent = hospital.name;
+    } else {
+        nameElement.textContent = "Unknown Hospital";
+    }
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
 
-    const traumalvl = hospital.traumalvl;
+    const traumalvl = hospital && hospital.traumalvl;
     var traumalvl_rate;
     if (traumalvl >= 4){
         traumalvl_rate = "Low"

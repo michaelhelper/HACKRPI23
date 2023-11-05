@@ -20,7 +20,6 @@ function createHospitalElement(hospital) {
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
     nameElement.textContent = hospital.name;
-    
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
@@ -226,7 +225,9 @@ window.onload = function() {
                                 }
                             }
                             newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins"});
-                            console.log(newFinalArray[counter]);
+                            2.log(newFinalArray[counter]);
+                            const hospitalElement = createHospitalElement(newFinalArray[counter]);
+                            hospitalList.appendChild(hospitalElement);
 						})
                     }
                 });
@@ -261,9 +262,7 @@ window.onload = function() {
                 //     return a.totalTime - b.totalTime;
                 // });
                 // Add each hospital to the hospital-list
-                console.log(newFinalArray[counter]);
-                const hospitalElement = createHospitalElement(newFinalArray[counter]);
-                hospitalList.appendChild(hospitalElement);
+
                 
             });
             counter = counter + 1;

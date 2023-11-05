@@ -20,7 +20,6 @@ function createHospitalElement(hospital) {
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
     nameElement.textContent = hospital.name;
-    
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
@@ -200,15 +199,14 @@ window.onload = function() {
                             // closestHospitals[counter].waitTime = waitTime["wait"];
                             // Calculate the total time
                             // check if the driving time is in hours and minutes or just minutes
-                            let totalTimeHours;
-                            let totalTimeMinutes;
+                            let 
                             if (drivingTime.includes("hours")) {
                                 let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
                                 let drivingTimeMinutes = parseInt(drivingTime.substring(8, 10));
                                 let waitTimeHours = parseInt(waitTime["wait"].substring(0, 1));
                                 let waitTimeMinutes = parseInt(waitTime["wait"].substring(3, 5));
-                                totalTimeHours = waitTimeHours + drivingTimeHours;
-                                totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                                let totalTimeHours = waitTimeHours + drivingTimeHours;
+                                let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
                                 if (totalTimeMinutes >= 60) {
                                     totalTimeHours = totalTimeHours + 1;
                                     totalTimeMinutes = totalTimeMinutes - 60;
@@ -218,8 +216,8 @@ window.onload = function() {
                                 let drivingTimeMinutes = parseInt(drivingTime.substring(0, 2));
                                 let waitTimeHours = parseInt(waitTime["wait"].substring(0, 1));
                                 let waitTimeMinutes = parseInt(waitTime["wait"].substring(3, 5));
-                                totalTimeHours = waitTimeHours;
-                                totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                                let totalTimeHours = waitTimeHours;
+                                let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
                                 if (totalTimeMinutes >= 60) {
                                     totalTimeHours = totalTimeHours + 1;
                                     totalTimeMinutes = totalTimeMinutes - 60;

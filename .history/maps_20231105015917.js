@@ -20,7 +20,6 @@ function createHospitalElement(hospital) {
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
     nameElement.textContent = hospital.name;
-    
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
@@ -261,9 +260,7 @@ window.onload = function() {
                 //     return a.totalTime - b.totalTime;
                 // });
                 // Add each hospital to the hospital-list
-                console.log(newFinalArray[counter]);
-                const hospitalElement = createHospitalElement(newFinalArray[counter]);
-                hospitalList.appendChild(hospitalElement);
+
                 
             });
             counter = counter + 1;

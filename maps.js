@@ -13,13 +13,44 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
     return distance;
 }
 
+// Hide or show the hospital based on toggle
+function toggleHospital(element){
+    // Go through all hospitals and hide them
+    const hospitals = document.getElementsByClassName("hospital-info");
+    for (let i = 0; i < hospitals.length; i++) {
+        hospitals[i].style.display = "none";
+    }
+
+    // fade in the hospital that was clicked
+    element.style.display = "block";
+    element.style.opacity = 0;
+    (function fade() {
+        var val = parseFloat(element.style.opacity);
+        if (!((val += .1) > 1)) {
+            element.style.opacity = val;
+            requestAnimationFrame(fade);
+        }
+    })();
+}
+
 function createHospitalElement(hospital) {
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
+    // add an onlick event that calls toggleHospital
+
+    const hospitalMain = document.createElement("div");
+    hospitalMain.classList.add("hospital-main");
 
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
     nameElement.textContent = hospital.name;
+   // console.log(hospital.name)
+    const timeElement = document.createElement("p");
+    timeElement.classList.add("hospital-time");
+    timeElement.textContent = hospital.totalTime;
+
+    hospitalMain.appendChild(nameElement);
+    hospitalMain.appendChild(timeElement);
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
@@ -27,33 +58,62 @@ function createHospitalElement(hospital) {
     const traumalvl = hospital.traumalvl;
     var traumalvl_rate;
     if (traumalvl >= 4){
-        traumalvl_rate = "Low"
+        traumalvl_rate = "This hospital cannot handle serious injuries"
     }
-    else if (traumalvl > 2){
-        traumalvl_rate = "Medium"
+    else if (traumalvl == 3){
+        traumalvl_rate = "3 - This hospital can stabilize serious injuries"
+    }
+    else if (traumalvl == 2){
+        traumalvl_rate = "2 - This hospital can handle most serious injuries"
     }
     else{
-        traumalvl_rate = "High"
+        traumalvl_rate = "1 - Gold standard in injury care, can handle all injuries"
     }
     
     const peds = hospital.peds;
-    var peds_rate = peds ? "Yes" : "No";
+    var peds_rate = peds ? "This hospital has children specialists" : "";
 
     const perinatal = hospital.perinatal;
-    var perinatal_rate = perinatal ? "Yes" : "No";
+    var perinatal_rate = perinatal ? "This hospital can deal with birth and newbord complications" : "";
 
     const PCI = hospital.PCI;
-    var PCI_rate = PCI ? "Yes" : "No";
+    var PCI_rate = PCI ? "This hospital can handle heart attacks and heart problems" : "This hospital cannot handle heart attacks and heart problems";
 
     const stroke = hospital.stroke;
-    var stroke_rate = stroke
+    var stroke_rate;
+    if (stroke == "none"){
+        stroke_rate = "This hospital cannot handle strokes"
+    }
+    else if (stroke == "primary"){
+        stroke_rate = "This hospital can stabilize strokes"
+    }
+    else if (stroke == "comprehensive"){
+        stroke_rate = "This hospital can treat strokes"
+    }
 
-    infoElement.innerHTML = `<span id="bold">Trauma Level:</span>&nbsp;${traumalvl_rate} |&nbsp;<span id="bold">Pediatric:</span>&nbsp;${peds_rate} |&nbsp;<span id="bold">Stroke:</span>&nbsp;${stroke_rate} |&nbsp;<span id="bold">Birth:</span>&nbsp;${perinatal_rate} |&nbsp;<span id="bold">Artery Care:</span>&nbsp;${PCI_rate} |&nbsp;<span id="bold">Burns:</span>&nbsp;${hospital.burn} `;
-    // |&nbsp;<span id="bold">Pediatric</span> ${hospital.peds} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Birth:</span> ${hospital.perinatal} | <span id="bold">Artery Care:</span> ${hospital.PCI} | <span id="bold">Burns:</span> ${hospital.burn} `;
+    var driveTime = hospital.drivingTime;
+    var waitTime = hospital.waitTime;
 
-    hospitalElement.appendChild(nameElement);
+
+    infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`
+    if(peds_rate != ""){
+        infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`
+    }
+    infoElement.innerHTML += `<p><b>Stroke:</b>&nbsp;${stroke_rate}</p>`
+    if(perinatal_rate != ""){
+        infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`
+    }
+    infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`
+    infoElement.innerHTML += `<p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p>`;
+
+    hospitalElement.onclick = function() {
+        toggleHospital(infoElement);
+    }
+
+    hospitalElement.appendChild(hospitalMain);
     hospitalElement.appendChild(infoElement);
 
+    
     return hospitalElement;
 }
 
@@ -62,7 +122,7 @@ function createHospitalElement(hospital) {
 
 window.onload = function() {
     // Create map
-    const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const map = L.map('map').setView([42.734253, -73.672481], 11);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -140,6 +200,7 @@ window.onload = function() {
 		}
 	});
     let counter = 0;
+    let newFinalArray = [];
     fetch(facilityList)
         .then(response => response.json())
         .then(data => {
@@ -151,7 +212,7 @@ window.onload = function() {
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
-                allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: "", waitTime: "", totalTime: ""});
+                allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn});
             });
             // Sort the allHospitals array by distance
             allHospitals.sort(function(a, b) {
@@ -185,20 +246,48 @@ window.onload = function() {
                 directionsService.route(request, function(result, status) {
                     if (status == 'OK') {
                         // Get the driving time from the result
-                        const drivingTime = result.routes[0].legs[0].duration.text;
+                        let drivingTime = result.routes[0].legs[0].duration.text;
                         console.log(`It will take ${drivingTime} to drive from ${userLocation} to ${hospitalName}.`);
                         // add the driving time to the hospital object
-                        closestHospitals[counter].drivingTime = drivingTime;
-                        setTimeout(function() {}, 10);
+                        // closestHospitals[counter].drivingTime = drivingTime;
 						fetch("./API/getWaittime.php?hosp="+hospitalToken).then(x => x.text()).then((txt) => {
 							console.log(`There will be a ${txt} wait at ${hospitalName}.`);
                             // add the wait time to the hospital object
                             // wait time looks like this: {"wait": "0h 46m"}
                             let waitTime = JSON.parse(txt);
                             console.log(waitTime["wait"]);
-                            // add the wait time of 2ms
-
-                            closestHospitals[counter].waitTime = waitTime["wait"];
+                            // closestHospitals[counter].waitTime = waitTime["wait"];
+                            // Calculate the total time
+                            // check if the driving time is in hours and minutes or just minutes
+                            let totalTimeHours;
+                            let totalTimeMinutes;
+                            if (drivingTime.includes("hours")) {
+                                let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
+                                let drivingTimeMinutes = parseInt(drivingTime.substring(8, 10));
+                                let waitTimeHours = parseInt(waitTime["wait"].substring(0, 1));
+                                let waitTimeMinutes = parseInt(waitTime["wait"].substring(3, 5));
+                                totalTimeHours = waitTimeHours + drivingTimeHours;
+                                totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                                if (totalTimeMinutes >= 60) {
+                                    totalTimeHours = totalTimeHours + 1;
+                                    totalTimeMinutes = totalTimeMinutes - 60;
+                                }
+                            }
+                            else {
+                                let drivingTimeMinutes = parseInt(drivingTime.substring(0, 2));
+                                let waitTimeHours = parseInt(waitTime["wait"].substring(0, 1));
+                                let waitTimeMinutes = parseInt(waitTime["wait"].substring(3, 5));
+                                totalTimeHours = waitTimeHours;
+                                totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                                if (totalTimeMinutes >= 60) {
+                                    totalTimeHours = totalTimeHours + 1;
+                                    totalTimeMinutes = totalTimeMinutes - 60;
+                                }
+                            }
+                            newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins"});
+                            console.log(newFinalArray[counter]);
+                            const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins"});
+                            hospitalList.appendChild(hospitalElement);
 						})
                     }
                 });
@@ -206,35 +295,35 @@ window.onload = function() {
                 // wait 10 ms before making the next request
                 setTimeout(function() {}, 10);
                 // add a new element total wait time to the hospital object
-                // wait time looks like this: {"wait": "0h 46m"}
-                // driving time looks like this: drivingTime: "5 hours 36 mins"
-                // total time looks like this: "6 hours 22 mins"    
-                let waitTime = closestHospitals[counter].waitTime;
-                let drivingTime = closestHospitals[counter].drivingTime;
-                console.log(closestHospitals[counter]);
-                console.log(closestHospitals[counter].drivingTime);
-                console.log(drivingTime);
-                console.log(waitTime);
-                let waitTimeHours = parseInt(waitTime.substring(0, 1));
-                let waitTimeMinutes = parseInt(waitTime.substring(3, 5));
-                let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
-                let drivingTimeMinutes = parseInt(drivingTime.substring(8, 10));
-                let totalTimeHours = waitTimeHours + drivingTimeHours;
-                let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
-                if (totalTimeMinutes >= 60) {
-                    totalTimeHours = totalTimeHours + 1;
-                    totalTimeMinutes = totalTimeMinutes - 60;
-                }
-                let totalTime = totalTimeHours + " hours " + totalTimeMinutes + " mins";
-                closestHospitals[counter].totalTime = totalTime;
-                console.log(totalTime);
+                // // wait time looks like this: {"wait": "0h 46m"}
+                // // driving time looks like this: drivingTime: "5 hours 36 mins"
+                // // total time looks like this: "6 hours 22 mins"    
+                // let waitTime = closestHospitals[counter].waitTime;
+                // let drivingTime = closestHospitals[counter].drivingTime;
+                // console.log(closestHospitals[counter]);
+                // console.log(closestHospitals[counter].drivingTime);
+                // console.log(drivingTime);
+                // console.log(waitTime);
+                // let waitTimeHours = parseInt(waitTime.substring(0, 1));
+                // let waitTimeMinutes = parseInt(waitTime.substring(3, 5));
+                // let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
+                // let drivingTimeMinutes = parseInt(drivingTime.substring(8, 10));
+                // let totalTimeHours = waitTimeHours + drivingTimeHours;
+                // let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                // if (totalTimeMinutes >= 60) {
+                //     totalTimeHours = totalTimeHours + 1;
+                //     totalTimeMinutes = totalTimeMinutes - 60;
+                // }
+                // let totalTime = totalTimeHours + " hours " + totalTimeMinutes + " mins";
+                // closestHospitals[counter].totalTime = totalTime;
+                // console.log(totalTime);
                 //sort the allHospitals array by total wait time
                 // allHospitals.sort(function(a, b) {
                 //     return a.totalTime - b.totalTime;
                 // });
                 // Add each hospital to the hospital-list
-                const hospitalElement = createHospitalElement(facility);
-                hospitalList.appendChild(hospitalElement);
+
+                
             });
             counter = counter + 1;
         });

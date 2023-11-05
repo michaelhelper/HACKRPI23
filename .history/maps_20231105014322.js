@@ -20,7 +20,6 @@ function createHospitalElement(hospital) {
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
     nameElement.textContent = hospital.name;
-    
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
@@ -200,15 +199,13 @@ window.onload = function() {
                             // closestHospitals[counter].waitTime = waitTime["wait"];
                             // Calculate the total time
                             // check if the driving time is in hours and minutes or just minutes
-                            let totalTimeHours;
-                            let totalTimeMinutes;
                             if (drivingTime.includes("hours")) {
                                 let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
                                 let drivingTimeMinutes = parseInt(drivingTime.substring(8, 10));
                                 let waitTimeHours = parseInt(waitTime["wait"].substring(0, 1));
                                 let waitTimeMinutes = parseInt(waitTime["wait"].substring(3, 5));
-                                totalTimeHours = waitTimeHours + drivingTimeHours;
-                                totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                                let totalTimeHours = waitTimeHours + drivingTimeHours;
+                                let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
                                 if (totalTimeMinutes >= 60) {
                                     totalTimeHours = totalTimeHours + 1;
                                     totalTimeMinutes = totalTimeMinutes - 60;
@@ -218,15 +215,14 @@ window.onload = function() {
                                 let drivingTimeMinutes = parseInt(drivingTime.substring(0, 2));
                                 let waitTimeHours = parseInt(waitTime["wait"].substring(0, 1));
                                 let waitTimeMinutes = parseInt(waitTime["wait"].substring(3, 5));
-                                totalTimeHours = waitTimeHours;
-                                totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                                let totalTimeHours = waitTimeHours;
+                                let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
                                 if (totalTimeMinutes >= 60) {
                                     totalTimeHours = totalTimeHours + 1;
                                     totalTimeMinutes = totalTimeMinutes - 60;
                                 }
                             }
                             newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins"});
-                            console.log(newFinalArray[counter]);
 						})
                     }
                 });
@@ -261,10 +257,8 @@ window.onload = function() {
                 //     return a.totalTime - b.totalTime;
                 // });
                 // Add each hospital to the hospital-list
-                console.log(newFinalArray[counter]);
-                const hospitalElement = createHospitalElement(newFinalArray[counter]);
+                const hospitalElement = createHospitalElement(newFinalArray[counter]]);
                 hospitalList.appendChild(hospitalElement);
-                
             });
             counter = counter + 1;
         });
