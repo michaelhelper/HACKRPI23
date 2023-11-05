@@ -303,7 +303,7 @@ function allcodes(map){
     });
     for (let i = 0; i < 5; i++) {
         const hospitalElement = createHospitalElement(newFinalArray[i], map);
-        hospitalList.appendChild(hospitalElement);
+        
     }
 }
 

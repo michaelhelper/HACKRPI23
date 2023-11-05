@@ -302,8 +302,7 @@ function allcodes(map){
         return a.totalWaitInMinutes - b.totalWaitInMinutes;
     });
     for (let i = 0; i < 5; i++) {
-        const hospitalElement = createHospitalElement(newFinalArray[i], map);
-        hospitalList.appendChild(hospitalElement);
+        cons
     }
 }
 
