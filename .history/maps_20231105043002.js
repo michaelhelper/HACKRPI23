@@ -140,6 +140,7 @@ window.onload = function() {
 					popupAnchor:  [0, 0]
 				}
 			});
+            // await new Promise(r => setTimeout(r, 5000));
 			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
@@ -154,6 +155,7 @@ window.onload = function() {
         maxZoom: 19,
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
 
     // Get location from zip code
 

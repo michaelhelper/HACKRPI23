@@ -147,14 +147,6 @@ window.onload = function() {
         });
     }
 
-    // Create map
-    // const map = L.map('map').setView([47.7291949, -73.6795041], 11);
-    const map = L.map('map').setView([user_lat, user_lng], 11);
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
     // Get location from zip code
 
     const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0'; // Replace with your Google Maps API key

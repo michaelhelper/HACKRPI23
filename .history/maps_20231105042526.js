@@ -114,6 +114,7 @@ function createHospitalElement(hospital) {
     hospitalElement.appendChild(hospitalMain);
     hospitalElement.appendChild(infoElement);
 
+    
     return hospitalElement;
 }
 
@@ -121,6 +122,13 @@ function createHospitalElement(hospital) {
 
 
 window.onload = function() {
+    // Create map
+    const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
     // Initialize allHospitals array
     const allHospitals = [];
 
@@ -146,14 +154,29 @@ window.onload = function() {
             searchInput.placeholder = 'Enter response here';
         });
     }
+    // wait for the geolocation to finish
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        user_lat = lat;
+        user_lng = lng;
+        // Set the map view to the lat/long
+        map.setView([lat, lng], 11);
+        let userIcon = L.Icon.extend({
+            options: {
+                iconUrl: "./resources/images/person.png",
+                iconSize: [48,48],
+                popupAnchor:  [0, 0]
+            }
+        });
+        const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+        // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
+        const searchInput = document.getElementById('search-input');
+        searchInput.placeholder = 'Enter response here';
+    });
 
-    // Create map
-    // const map = L.map('map').setView([47.7291949, -73.6795041], 11);
-    const map = L.map('map').setView([user_lat, user_lng], 11);
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    
+
 
     // Get location from zip code
 

@@ -114,6 +114,7 @@ function createHospitalElement(hospital) {
     hospitalElement.appendChild(hospitalMain);
     hospitalElement.appendChild(infoElement);
 
+    
     return hospitalElement;
 }
 
@@ -121,6 +122,13 @@ function createHospitalElement(hospital) {
 
 
 window.onload = function() {
+    // Create map
+    const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
     // Initialize allHospitals array
     const allHospitals = [];
 
@@ -147,13 +155,6 @@ window.onload = function() {
         });
     }
 
-    // Create map
-    // const map = L.map('map').setView([47.7291949, -73.6795041], 11);
-    const map = L.map('map').setView([user_lat, user_lng], 11);
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
 
     // Get location from zip code
 
@@ -238,9 +239,9 @@ window.onload = function() {
                 let hospitalCoords = facility.coords;
                 let hospitalLocation = new google.maps.LatLng(hospitalCoords.x, hospitalCoords.y);
                 
-                let userLocation = map.getCenter();
+                // let userLocation = map.getCenter();
                 // use the user's location instead of the map center with thw same format as hospitalLocation
-                // let userLocation = new google.maps.LatLng(user_lat, user_lng);
+                let userLocation = new google.maps.LatLng(user_lat, user_lng);
 
             
                 // Create a DirectionsRequest object

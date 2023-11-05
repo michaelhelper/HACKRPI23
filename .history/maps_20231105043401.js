@@ -133,17 +133,20 @@ window.onload = function() {
             user_lng = lng;
             // Set the map view to the lat/long
             map.setView([lat, lng], 11);
-			let userIcon = L.Icon.extend({
-				options: {
-					iconUrl: "./resources/images/person.png",
-					iconSize: [48,48],
-					popupAnchor:  [0, 0]
-				}
-			});
-			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+            let userIcon = L.Icon.extend({
+                options: {
+                    iconUrl: "./resources/images/person.png",
+                    iconSize: [48,48],
+                    popupAnchor:  [0, 0]
+                }
+            });
+            const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
+
+            // Add your code here that should only run after geolocation is found
+            // ...
         });
     }
 
