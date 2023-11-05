@@ -4,7 +4,7 @@ let theMap;
 
 
 // Function to convert ZIP code to lat/long
-function convertZipCode() {
+function convertZipCode(map) {
     // Get the ZIP code from the form
     const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0';
     const zipCode = document.getElementById('search-input').value;
@@ -337,11 +337,11 @@ function clickPress(event) {
     }
 }
 
-function zipcode() {
+function zipcode(map) {
     // Get the ZIP code from the form
     // const zipCode = document.getElementById('search-input').value;
     // alert(`The zip code is ${zipCode}`);
-    convertZipCode();
+    convertZipCode(map);
     setTimeout(function() {}, 1000);
     allcodes();
 }
