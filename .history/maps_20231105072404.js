@@ -219,7 +219,7 @@ function allcodes(map){
             allHospitals.sort(function(a, b) {
                 return a.distance - b.distance;
             });
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 4; i++) {
                 closestHospitals.push(allHospitals[i]);
             }
             
