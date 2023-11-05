@@ -78,6 +78,12 @@ window.onload = function() {
             const lng = position.coords.longitude;
             // Set the map view to the lat/long
             map.setView([lat, lng], 11);
+
+            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
+            const searchInput = document.getElementById('search-input');
+            searchInput.style.width = '250%';
+            searchInput.placeholder = 'Enter response here';
+
         });
     }
 
