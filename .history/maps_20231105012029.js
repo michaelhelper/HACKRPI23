@@ -78,14 +78,6 @@ window.onload = function() {
             const lng = position.coords.longitude;
             // Set the map view to the lat/long
             map.setView([lat, lng], 11);
-			let userIcon = L.Icon.extend({
-				options: {
-					iconUrl: "./resources/images/person.png",
-					iconSize: [48,48],
-					popupAnchor:  [0, 0]
-				}
-			});
-			const marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
@@ -135,6 +127,13 @@ window.onload = function() {
 	let hospIcon = L.Icon.extend({
 		options: {
 			iconUrl: "./resources/images/hospital.png",
+			iconSize: [48,48],
+			popupAnchor:  [0, 0]
+		}
+	});
+	let userIcon = L.Icon.extend({
+		options: {
+			iconUrl: "./resources/images/person.png",
 			iconSize: [48,48],
 			popupAnchor:  [0, 0]
 		}
