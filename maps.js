@@ -46,10 +46,10 @@ function createHospitalElement(hospital) {
     var PCI_rate = PCI ? "Yes" : "No";
 
     const stroke = hospital.stroke;
-    var stroke_rate = stroke ? "Yes" : "No";
+    var stroke_rate = stroke
 
-    infoElement.innerHTML = `<span id="bold">Trauma Level:</span>&nbsp;${traumalvl_rate} | <span id="bold">Pediatric:</span>&nbsp;${peds_rate} | <span id="bold">Stroke:</span>&nbsp;${stroke_rate} | <span id="bold">Birth:</span>&nbsp;${perinatal_rate} | <span id="bold">Artery Care:</span>&nbsp;${PCI_rate} | <span id="bold">Burns:</span>&nbsp;${hospital.burn} `;
-    // | <span id="bold">Pediatric</span> ${hospital.peds} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Birth:</span> ${hospital.perinatal} | <span id="bold">Artery Care:</span> ${hospital.PCI} | <span id="bold">Burns:</span> ${hospital.burn} `;
+    infoElement.innerHTML = `<span id="bold">Trauma Level:</span>&nbsp;${traumalvl_rate} |&nbsp;<span id="bold">Pediatric:</span>&nbsp;${peds_rate} |&nbsp;<span id="bold">Stroke:</span>&nbsp;${stroke_rate} |&nbsp;<span id="bold">Birth:</span>&nbsp;${perinatal_rate} |&nbsp;<span id="bold">Artery Care:</span>&nbsp;${PCI_rate} |&nbsp;<span id="bold">Burns:</span>&nbsp;${hospital.burn} `;
+    // |&nbsp;<span id="bold">Pediatric</span> ${hospital.peds} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Birth:</span> ${hospital.perinatal} | <span id="bold">Artery Care:</span> ${hospital.PCI} | <span id="bold">Burns:</span> ${hospital.burn} `;
 
     hospitalElement.appendChild(nameElement);
     hospitalElement.appendChild(infoElement);
@@ -78,16 +78,9 @@ window.onload = function() {
             const lng = position.coords.longitude;
             // Set the map view to the lat/long
             map.setView([lat, lng], 11);
-
-            var element = document.getElementById("search-input");
-            // get the original width and height of the element
-            var originalWidth = element.width();
-            // animate the width and height to twice their original values
-            element.animate({
-                width: originalWidth * 2 + "px", // multiply the width by 2
-            }, 500); // set the duration to 500 milliseconds
-            element.placeholder = 'Enter response here';
-
+            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
+            const searchInput = document.getElementById('search-input');
+            searchInput.placeholder = 'Enter response here';
         });
     }
 
@@ -143,7 +136,7 @@ window.onload = function() {
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
-                allHospitals.push({ name: facility.name, distance: distance, coords: facility.coords });
+                allHospitals.push({ name: facility.name, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn });
             });
             // Sort the allHospitals array by distance
             allHospitals.sort(function(a, b) {
@@ -180,8 +173,13 @@ window.onload = function() {
                         console.log(`It will take ${drivingTime} to drive from ${userLocation} to ${hospitalName}.`);
                     }
                 });
+                const hospitalList = document.getElementById('hospital-list');
                 // wait 10 ms before making the next request
                 setTimeout(function() {}, 10);
+                // Add each hospital to the hospital-list
+                const hospitalElement = createHospitalElement(facility);
+                hospitalList.appendChild(hospitalElement);
             });
+
         });
 }
