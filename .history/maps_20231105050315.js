@@ -34,14 +34,6 @@ function toggleHospital(element){
     })();
 }
 
-function delete_hospitals(){
-    const hospitals = document.getElementsByClassName("hospital");
-    for (let i = 0; i < hospitals.length; i++) {
-        console.log(hospitals[i]);
-        hospitals[i].remove();
-    }
-}
-
 function createHospitalElement(hospital) {
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
@@ -103,6 +95,7 @@ function createHospitalElement(hospital) {
     var driveTime = hospital.drivingTime;
     var waitTime = hospital.waitTime;
 
+
     infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`;
     if(peds_rate != ""){
         infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`;
@@ -112,7 +105,7 @@ function createHospitalElement(hospital) {
         infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`;
     }
     infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`;
-    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><a href="https://www.google.com/maps/place/${hospital.address.replace(' ',',').replace(' ','+')}"><button>Go</button></a></div></div>`;
+    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><button>Go</button></div></div>`;
 
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
@@ -272,9 +265,9 @@ function allcodes(map){
                                     totalTimeMinutes = totalTimeMinutes - 60;
                                 }
                             }
-                            newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address});
+                            newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins"});
                             console.log(newFinalArray[counter]);
-                            const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address});
+                            const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins"});
                             hospitalList.appendChild(hospitalElement);
 						})
                     }
@@ -309,7 +302,6 @@ window.onload = function() {
 				}
 			});
 			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
-            //delete_hospitals();
             //call allcodes
             allcodes(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
@@ -319,6 +311,5 @@ window.onload = function() {
 
     }
     //call allcodes
-    //delete_hospitals();
     allcodes(map);
 }
