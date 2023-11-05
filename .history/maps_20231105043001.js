@@ -124,43 +124,39 @@ window.onload = function() {
     // Initialize allHospitals array
     const allHospitals = [];
 
-    function getCurrentPosition() {
-        return new Promise((resolve, reject) => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(resolve, reject);
-            } else {
-                reject('Geolocation is not supported by this browser.');
-            }
-        });
-    }
-
-    getCurrentPosition()
-        .then(position => {
+    // Get current location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
             user_lat = lat;
             user_lng = lng;
             // Set the map view to the lat/long
-            const map = L.map('map').setView([lat, lng], 11);
-            const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
-            let userIcon = L.Icon.extend({
-                options: {
-                    iconUrl: "./resources/images/person.png",
-                    iconSize: [48,48],
-                    popupAnchor:  [0, 0]
-                }
-            });
-            const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+            map.setView([lat, lng], 11);
+			let userIcon = L.Icon.extend({
+				options: {
+					iconUrl: "./resources/images/person.png",
+					iconSize: [48,48],
+					popupAnchor:  [0, 0]
+				}
+			});
+            // awa
+			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
-        })
-        .catch(error => {
-            console.error(error);
         });
+    }
+
+    // Create map
+    // const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const map = L.map('map').setView([user_lat, user_lng], 11);
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+
     // Get location from zip code
 
     const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0'; // Replace with your Google Maps API key
