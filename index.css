@@ -126,7 +126,7 @@ a {
     margin-right: 565px;
 }
 
-#available{
+#available p {
     color: --theme-1;
     border-bottom: 1px solid var(--theme-1);
     font-size: 20px;
