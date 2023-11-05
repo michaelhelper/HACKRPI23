@@ -155,7 +155,6 @@ window.onload = function() {
         });
     }
     // wait for the geolocation to finish
-    setTimeout(function() {}, 10000);
     
 
 

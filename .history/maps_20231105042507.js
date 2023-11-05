@@ -154,9 +154,7 @@ window.onload = function() {
             searchInput.placeholder = 'Enter response here';
         });
     }
-    // wait for the geolocation to finish
-    setTimeout(function() {}, 10000);
-    
+    // wait for the ge
 
 
     // Get location from zip code
