@@ -330,7 +330,7 @@ window.onload = function() {
 function zipcode() {
     // Get the ZIP code from the form
     const zipCode = document.getElementById('search-input').value;
-    alert(`The zip code is ${zipCode}`);
+    
     convertZipCode();
     setTimeout(function() {}, 1000);
     allcodes();
