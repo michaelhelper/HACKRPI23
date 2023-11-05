@@ -328,13 +328,13 @@ window.onload = function() {
 
     //call allcodes
     allcodes(map);
-    function clickPress(event) {
-        if (event.keyCode == 13) {
-            zipcode(map);
-        }
-    }
 }
 
+function clickPress(event) {
+    if (event.keyCode == 13) {
+        zipcode(map);
+    }
+}
 
 function zipcode(map) {
     // Get the ZIP code from the form

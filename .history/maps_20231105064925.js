@@ -328,11 +328,6 @@ window.onload = function() {
 
     //call allcodes
     allcodes(map);
-    function clickPress(event) {
-        if (event.keyCode == 13) {
-            zipcode(map);
-        }
-    }
 }
 
 
