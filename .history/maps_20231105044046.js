@@ -34,14 +34,6 @@ function toggleHospital(element){
     })();
 }
 
-function delete_hospitals(){
-    const hospitals = document.getElementsByClassName("hospital");
-    for (let i = 0; i < hospitals.length; i++) {
-        console.log(hospitals[i]);
-        hospitals[i].remove();
-    }
-}
-
 function createHospitalElement(hospital) {
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
@@ -103,6 +95,7 @@ function createHospitalElement(hospital) {
     var driveTime = hospital.drivingTime;
     var waitTime = hospital.waitTime;
 
+
     infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`;
     if(peds_rate != ""){
         infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`;
@@ -112,7 +105,7 @@ function createHospitalElement(hospital) {
         infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`;
     }
     infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`;
-    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><a href="https://www.google.com/maps/place/${hospital.address.replace(' ','+')}"><button>Go</button></a></div></div>`;
+    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><button>Go</button></div></div>`;
 
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
@@ -124,12 +117,13 @@ function createHospitalElement(hospital) {
     return hospitalElement;
 }
 
-function allcodes(map){
+function allcodes(){
     
     // Initialize allHospitals array
     const allHospitals = [];
     // Create map
     // const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const map = L.map('map').setView([user_lat, user_lng], 11);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -291,7 +285,8 @@ function allcodes(map){
 
 
 window.onload = function() {
-    const map = L.map('map').setView([user_lat, user_lng], 11);
+
+
     // Get current location
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -308,10 +303,8 @@ window.onload = function() {
 					popupAnchor:  [0, 0]
 				}
 			});
-			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
-            delete_hospitals();
-            //call allcodes
-            allcodes(map);
+			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map)
+            ;
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
@@ -319,6 +312,5 @@ window.onload = function() {
 
     }
     //call allcodes
-    delete_hospitals();
-    allcodes(map);
+    allcodes();
 }
