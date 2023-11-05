@@ -321,7 +321,7 @@ window.onload = function() {
 					popupAnchor:  [0, 0]
 				}
 			});
-			marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(theMap);
+			marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             
             //call allcodes
             allcodes(theMap);
