@@ -126,6 +126,11 @@ a {
     margin-right: 565px;
 }
 
+#available{
+    margin-left: 400px;
+    border-bottom: #202020;
+}
+
 #hospitals{
     display: flex;
     flex-direction: row;
