@@ -256,6 +256,7 @@ function allcodes(map){
                             // add the wait time to the hospital object
                             // wait time looks like this: {"wait": "0h 46m"}
                             let waitTime = JSON.parse(txt);
+                            console.log(waitTime["wait"]);
                             // closestHospitals[counter].waitTime = waitTime["wait"];
                             // Calculate the total time
                             // check if the driving time is in hours and minutes or just minutes
@@ -285,6 +286,7 @@ function allcodes(map){
                                 }
                             }
                             newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address});
+                            console.log(newFinalArray[counter]);
                             const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, x: facility.coords.x, y: facility.coords.y}, map);
                             hospitalList.appendChild(hospitalElement);
 						})
@@ -294,7 +296,6 @@ function allcodes(map){
                 // wait 10 ms before making the next request
                 setTimeout(function() {}, 10);
             });
-            console.log(newFinalArray);
             counter = counter + 1;
         });
 }
