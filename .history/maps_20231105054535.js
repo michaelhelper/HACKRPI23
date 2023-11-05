@@ -136,11 +136,8 @@ function createHospitalElement(hospital, map) {
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
 		map.flyTo([hospital.x, hospital.y]);
-        // open the popup for the hospital
-        var popup = L.popup()
-            .setLatLng([hospital.x, hospital.y])
-            .setContent(`<b>${hospital.name}</b><br>${hospital.address}<br>`)
-            .openOn(map);
+        // popup.openPopup();
+        	
     }
 
     hospitalElement.appendChild(hospitalMain);
