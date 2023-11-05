@@ -309,7 +309,7 @@ window.onload = function() {
 				}
 			});
 			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
-            delete_hospitals();
+            //delete_hospitals();
             //call allcodes
             allcodes(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
@@ -319,6 +319,6 @@ window.onload = function() {
 
     }
     //call allcodes
-    delete_hospitals();
+    //delete_hospitals();
     allcodes(map);
 }
