@@ -252,3 +252,13 @@ html, body {
 #get-direction button:hover{
     background-color: var(--theme-2);
 }
+
+/* add mobile */
+@media only screen and (max-width: 1400px) {
+    #hospitals{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+    }
+}
