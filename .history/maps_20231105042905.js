@@ -149,7 +149,7 @@ window.onload = function() {
 
     // Create map
     // const map = L.map('map').setView([47.7291949, -73.6795041], 11);
-    const map = L.map('map').setView([user_lat, user_lng], 11);
+    
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
