@@ -1,4 +1,24 @@
-const token = process.env.OPENAI_API_KEY;
+fetch('/getOpenApiKey')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if (data.apiKey) {
+      // Use the API key in your client-side code
+      const variableToUse = data.apiKey;
+      // ...
+    } else {
+      // Handle the case where the response does not contain an API key
+    }
+  })
+  .catch((error) => {
+    console.error('Fetch error:', error);
+    // Handle the error appropriately (e.g., show an error message to the user)
+  });
+
 
 tinymce.init({
   selector: 'textarea',  // Change this value according to your HTML
@@ -9,7 +29,7 @@ tinymce.init({
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${variableToUse}`
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
