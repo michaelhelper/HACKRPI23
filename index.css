@@ -29,9 +29,12 @@ body {
     display: flex;
     align-items: center;
     font-size: 3em;
-    font-weight: 500;
+    font-weight: 900;
     color: var(--theme-1);
     margin: 0 0 0 30px;
+    background-color: var(--theme-0);
+    border-radius: 10px;
+    padding: 0 10px;
 }
 
 .nav-container button{
@@ -54,7 +57,7 @@ body {
     color: var(--theme-0);
 }
 
-span.bold{
+.bold span{
     font-weight: 600;
 }
 
@@ -115,6 +118,7 @@ span.bold{
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: fit-content;
 }
 
 #hospital-list{
@@ -122,7 +126,7 @@ span.bold{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* margin: 0 0 0 30px; */
+    margin: 0 20px 0 0;
 }
 
 html, body {
@@ -140,11 +144,12 @@ html, body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin: 0 0 20px 0;
-    width: 500px;
+    margin: 0 0 20px 80px;
+    width: 700px;
     height: 70px;
     background-color: var(--theme-1);
     border-radius: 20px;
+
 }
 
 .hospital-name{
