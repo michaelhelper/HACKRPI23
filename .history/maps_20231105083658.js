@@ -98,43 +98,43 @@ function createHospitalElement(hospital, map) {
     const traumalvl = hospital.traumalvl;
     var traumalvl_rate;
     if (traumalvl >= 4){
-        traumalvl_rate = "This hospital cannot handle serious injuries."
+        traumalvl_rate = "This hospital cannot handle serious injuries"
     }
     else if (traumalvl == 3){
-        traumalvl_rate = "3 - This hospital can stabilize serious injuries."
+        traumalvl_rate = "3 - This hospital can stabilize serious injuries"
     }
     else if (traumalvl == 2){
-        traumalvl_rate = "2 - This hospital can handle most serious injuries."
+        traumalvl_rate = "2 - This hospital can handle most serious injuries"
     }
     else{
-        traumalvl_rate = "1 - Gold standard in injury care, can handle all injuries."
+        traumalvl_rate = "1 - Gold standard in injury care, can handle all injuries"
     }
     
     const peds = hospital.peds;
-    var peds_rate = peds ? "This hospital has a pediatric ER." : "";
+    var peds_rate = peds ? "This hospital has children specialists" : "";
 
     const perinatal = hospital.perinatal;
-    var perinatal_rate = perinatal ? "This hospital can deal with birth and newborn complications." : "";
+    var perinatal_rate = perinatal ? "This hospital can deal with birth and newborn complications" : "";
 
     const PCI = hospital.PCI;
-    var PCI_rate = PCI ? "This hospital can handle heart attacks and heart problems." : "This hospital cannot handle heart attacks and heart problems.";
+    var PCI_rate = PCI ? "This hospital can handle heart attacks and heart problems" : "This hospital cannot handle heart attacks and heart problems";
 
     const stroke = hospital.stroke;
     var stroke_rate;
     if (stroke == "none"){
-        stroke_rate = "This hospital cannot handle strokes."
+        stroke_rate = "This hospital cannot handle strokes"
     }
     else if (stroke == "primary"){
-        stroke_rate = "This hospital can treat mild strokes."
+        stroke_rate = "This hospital can stabilize strokes"
     }
     else if (stroke == "comprehensive"){
-        stroke_rate = "This hospital can treat all strokes."
+        stroke_rate = "This hospital can treat strokes"
     }
 
     var driveTime = hospital.drivingTime;
     var waitTime = hospital.waitTime;
 
-    infoElement.innerHTML += `<p><b>Trauma:</b>&nbsp;${traumalvl_rate}</p>`;
+    infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`;
     if(peds_rate != ""){
         infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`;
     }
@@ -142,7 +142,7 @@ function createHospitalElement(hospital, map) {
     if(perinatal_rate != ""){
         infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`;
     }
-    infoElement.innerHTML += `<p><b>Cardiac:</b>&nbsp;${PCI_rate}</p>`;
+    infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`;
     infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><a target="_blank"href="https://www.google.com/maps/place/${hospital.address.replace(' ',',').replace(' ','+')}" target="_blank"><button>Go</button></a></div></div>`;
 
     hospitalElement.onclick = function() {
@@ -285,7 +285,7 @@ function allcodes(map){
                                 }
                             }
                             // let hospitalList = document.getElementById('hospital-list');
-                            newFinalArray.push({name: facility.name, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, totalWaitInMinutes: (totalTimeHours * 60) + totalTimeMinutes});
+                            newFinalArray.push({name: hositalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, totalWaitInMinutes: (totalTimeHours * 60) + totalTimeMinutes});
                             // const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, x: facility.coords.x, y: facility.coords.y}, map);
                             // hospitalList.appendChild(hospitalElement);
 						})
