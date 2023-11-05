@@ -16,6 +16,7 @@ function convertZipCode() {
     fetch(geocodingUrl)
         .then(response => response.json())
         .then(data => {
+            map.removeLayer(marker);
             const lat = data.results[0].geometry.location.lat;
             const lng = data.results[0].geometry.location.lng;
             // Set the map view to the lat/long
@@ -31,7 +32,7 @@ function convertZipCode() {
                 }
             });
             marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(theMap);
-            allcodes(theMap);
+            // 
         });
 }
 // Calculate the distance between two sets of coordinates using the Haversine formula.

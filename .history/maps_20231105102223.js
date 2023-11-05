@@ -16,6 +16,7 @@ function convertZipCode() {
     fetch(geocodingUrl)
         .then(response => response.json())
         .then(data => {
+            // rem
             const lat = data.results[0].geometry.location.lat;
             const lng = data.results[0].geometry.location.lng;
             // Set the map view to the lat/long
