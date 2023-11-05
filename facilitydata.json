@@ -2,6 +2,7 @@
     "hospitals": [
         {
             "name": "UVM - Champlain Valley",
+            "token": "champlain-valley-physicians-hospital-medical-ctr-plattsburgh-ny",
             "address": "75 Beekman St, Plattsburgh, NY 12901",
             "coords": {
                 "x": 44.701361,
@@ -16,6 +17,7 @@
         },
         {
             "name": "St. Peter's Hospital",
+            "token": "st-peters-hospital-albany-ny",
             "address": "315 South Manning Boulevard, Albany, NY 12208",
             "coords": {
                 "x": 42.655434,
@@ -30,6 +32,7 @@
         },
         {
             "name": "Saratoga Hospital",
+            "token": "saratoga-hospital-saratoga-springs-ny",
             "address": "211 Church Street, Saratoga Springs, NY 12866",
             "coords": {
                 "x": 43.085465,
@@ -44,6 +47,7 @@
         },
         {
             "name": "St. Mary's Health",
+            "token": "st-marys-hospital-at-amsterdam-amsterdam-ny",
             "address": "427 Guy Park Avenue, Amsterdam, NY 12010",
             "coords": {
                 "x": 42.954417,
@@ -58,6 +62,7 @@
         },
         {
             "name": "Albany Memorial",
+            "token": "albany-memorial-hospital-albany-ny",
             "address": "600 Northern Boulevard, Albany, NY 12204",
             "coords": {
                 "x": 42.673797,
@@ -72,6 +77,7 @@
         },
         {
             "name": "Samaritan Hospital",
+            "token": "samaritan-hospital-troy-ny",
             "address": "2215 Burdett Avenue, Troy, NY 12180",
             "coords": {
                 "x": 42.734253, 
@@ -86,6 +92,7 @@
         },
         {
             "name": "Nathan Littauer Hospital",
+            "token": "nathan-littauer-hospital-gloversville-ny",
             "address": "99 East State Street, Gloversville, NY 12078",
             "coords": {
                 "x": 43.070892, 
@@ -100,6 +107,7 @@
         },
         {
             "name": "Mary Imogene Bassett Hospital",
+            "token": "mary-imogene-bassett-hospital-cooperstown-ny",
             "address": "One Atwell Road, Cooperstown, NY 13326",
             "coords": {
                 "x": 42.695975, 
@@ -114,6 +122,7 @@
         },
         {
             "name": "Glens Falls Hospital",
+            "token": "glens-falls-hospital-glens-falls-ny",
             "address": "100 Park Stree, Glen Falls, NY 12801",
             "coords": {
                 "x": 43.307139, 
@@ -128,6 +137,7 @@
         },
         {
             "name": "Albany Medical Center",
+            "token": "albany-medical-center-hospital-albany-ny",
             "address": "43 New Scotland Avenue, Albany, NY 12208",
             "coords": {
                 "x": 42.653716, 
@@ -142,6 +152,7 @@
         },
         {
             "name": "Columbia Memorial",
+            "token": "columbia-memorial-hospital-hudson-ny",
             "address": "71 Prospect Ave, Hudson, NY 12534",
             "coords": {
                 "x": 42.246597, 
@@ -156,6 +167,7 @@
         },
         {
             "name": "Ellis Hospital",
+            "token": "ellis-hospital-schenectady-ny",
             "address": "1101 Nott Street, Schenectady, NY 12308",
             "coords": {
                 "x": 42.820691, 
@@ -170,6 +182,7 @@
         },
         {
             "name": "Adirondack Med - Saranac Lake",
+            "token": "adirondack-medical-center-saranac-lake-ny",
             "address": "2233 State Route 86, Saranac Lake, NY 12983",
             "coords": {
                 "x": 44.345761, 
@@ -183,7 +196,8 @@
             "burn": false
         },
         {
-            "name": "A.O. Fox Memorial",
+            "name": "Aurelia Osborn Fox Memorial",
+            "token": "aurelia-osborn-fox-memorial-hospital-oneonta-ny",
             "address": "One Norton Avenue, Oneonta, NY 13820",
             "coords": {
                 "x": 42.456884, 
@@ -197,35 +211,8 @@
             "burn": false
         },
         {
-            "name": "A.O. Fox Memorial - Tri-Town",
-            "address": "43 Pearl Street West, Sidney, NY 13838",
-            "coords": {
-                "x": 42.304470, 
-                "y": -75.395672
-            },
-            "traumalvl": 5,
-            "peds": false,
-            "stroke": "none",
-            "perinatal": false,
-            "PCI": false,
-            "burn": false
-        },
-        {
-            "name": "Margaretville Hospital",
-            "address": "42084 State Highway 28, Margaretville, NY 12455",
-            "coords": {
-                "x": 42.146849, 
-                "y": -74.641894
-            },
-            "traumalvl": 5,
-            "peds": false,
-            "stroke": "none",
-            "perinatal": false,
-            "PCI": false,
-            "burn": false
-        },
-        {
             "name": "Delaware Valley Hospital",
+            "token": "delaware-valley-hospital-walton-ny",
             "address": "1 Titus Place, Walton, NY 13856",
             "coords": {
                 "x": 42.164435, 
@@ -240,6 +227,7 @@
         },
         {
             "name": "Cobleskill Regional Hospital",
+            "token": "cobleskill-regional-hospital-cobleskill-ny",
             "address": "178 Grandview Drive, Cobleskill, NY 12043",
             "coords": {
                 "x": 42.686641,
@@ -253,21 +241,8 @@
             "burn": false
         },
         {
-            "name": "O'Connor Hospital",
-            "address": "460 Andes Road, Delhi, NY 13753",
-            "coords": {
-                "x": 42.268210,
-                "y": -74.916112
-            },
-            "traumalvl": 5,
-            "peds": false,
-            "stroke": "none",
-            "perinatal": false,
-            "PCI": false,
-            "burn": false
-        },
-        {
             "name": "UVM - Alice Hyde Medical Center",
+            "token": "alice-hyde-medical-center-malone-ny",
             "address": "133 Park Street, Malone, NY 12953",
             "coords": {
                 "x": 44.856901,
@@ -282,6 +257,7 @@
         },
         {
             "name": "UVM - Elizabethtown Community Hospital",
+            "token": "elizabethtown-community-hospital-elizabethtown-ny",
             "address": "75 Park Street, Elizabethtown, NY 12932",
             "coords": {
                 "x": 44.216029,
