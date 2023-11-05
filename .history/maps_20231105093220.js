@@ -306,7 +306,7 @@ function allcodes(map){
     for (let i = 0; i < 5; i++) {
         let hospitalList = document.getElementById('hospital-list');
         const hospitalElement = createHospitalElement(newFinalArray[i], map);
-        console.log(hospitalElement);
+        console.log([i]);
         hospitalList.appendChild(hospitalElement);
     }
 }
