@@ -117,7 +117,7 @@ function createHospitalElement(hospital) {
     return hospitalElement;
 }
 
-function allcodes(map){
+function allcodes(){
     
     // Initialize allHospitals array
     const allHospitals = [];
@@ -303,7 +303,7 @@ window.onload = function() {
 			});
 			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             //call allcodes
-            allcodes(map);
+            allcodes();
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
@@ -311,5 +311,5 @@ window.onload = function() {
 
     }
     //call allcodes
-    allcodes(map);
+    allcodes();
 }

@@ -117,7 +117,7 @@ function createHospitalElement(hospital) {
     return hospitalElement;
 }
 
-function allcodes(map){
+function allcodes(){
     
     // Initialize allHospitals array
     const allHospitals = [];
@@ -311,5 +311,5 @@ window.onload = function() {
 
     }
     //call allcodes
-    allcodes(map);
+    allcodes();
 }

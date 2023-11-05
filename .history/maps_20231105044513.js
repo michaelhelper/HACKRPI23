@@ -1,5 +1,6 @@
 let user_lat = 61.217381;
 let user_lng = -149.863129;
+ map = L.map('map').setView([user_lat, user_lng], 11);
 // Calculate the distance between two sets of coordinates using the Haversine formula.
 function calculateDistance(lat1, lng1, lat2, lng2) {
     const radius = 6371; // Earth's radius in kilometers
@@ -117,7 +118,7 @@ function createHospitalElement(hospital) {
     return hospitalElement;
 }
 
-function allcodes(map){
+function allcodes(){
     
     // Initialize allHospitals array
     const allHospitals = [];
@@ -284,7 +285,8 @@ function allcodes(map){
 
 
 window.onload = function() {
-    const map = L.map('map').setView([user_lat, user_lng], 11);
+
+
     // Get current location
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -303,7 +305,7 @@ window.onload = function() {
 			});
 			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             //call allcodes
-            allcodes(map);
+            allcodes();
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
@@ -311,5 +313,5 @@ window.onload = function() {
 
     }
     //call allcodes
-    allcodes(map);
+    allcodes();
 }
