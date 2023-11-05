@@ -192,9 +192,7 @@ window.onload = function() {
 						fetch("./API/getWaittime.php?hosp="+hospitalToken).then(x => x.text()).then((txt) => {
 							console.log(`There will be a ${txt} wait at ${hospitalName}.`);
                             // add the wait time to the hospital object
-                            // wait time looks like this: {"wait": "0h 46m"}
-                            let waitTime = JSON.parse(txt);
-                            facility.waitTime = waitTime[wait];
+                            facility.waitTime = txt;
 						})
                     }
                 });
@@ -207,8 +205,7 @@ window.onload = function() {
                 // total time looks like this: "6 hours 22 mins"    
                 let waitTime = facility.waitTime;
                 let drivingTime = facility.drivingTime;
-                console.log(waitTime);
-                console.log(drivingTime);
+                con
                 let waitTimeHours = parseInt(waitTime.substring(0, 1));
                 let waitTimeMinutes = parseInt(waitTime.substring(3, 5));
                 let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
