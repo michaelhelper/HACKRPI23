@@ -362,7 +362,7 @@ function zipcode() {
     // empty newFinalArray
     // newFinalArray = []; does not work
     // empty the array by setting it to a new array
-    newFinalArray = alwaysEmptyArray;
+
     // Get the ZIP code from the form
     // const zipCode = document.getElementById('search-input').value;
     // alert(`The zip code is ${zipCode}`);
