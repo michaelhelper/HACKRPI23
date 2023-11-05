@@ -302,9 +302,7 @@ function allcodes(map){
     // sort the array by total time
     newFinalArray.sort(function(a, b) {
         return a.totalWaitInMinutes - b.totalWaitInMinutes;
-    });
-    // reverse the array so the shortest wait time is first
-    newFinalArray.reverse();
+    }, );
     setTimeout(function() {}, 100000);
     for (let i = 0; i < 5; i++) {
         let hospitalList = document.getElementById('hospital-list');
