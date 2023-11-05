@@ -1,4 +1,4 @@
-const api_key = "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"
+const api_key = "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"
 
 tinymce.init({
   selector: 'textarea',  // Change this value according to your HTML
