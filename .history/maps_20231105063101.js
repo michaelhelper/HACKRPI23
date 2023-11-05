@@ -9,7 +9,7 @@ function convertZipCode() {
     const zipCode = document.getElementById('search-input').value;
     alert(`The zip code is ${zipCode}`);
     const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${apiKey}`;
-    alert(`The geocoding URL is ${geocodingUrl}`);
+
     // Query the API using fetch()
     fetch(geocodingUrl)
         .then(response => response.json())
