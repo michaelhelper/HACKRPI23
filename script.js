@@ -1,5 +1,3 @@
-
-
 tinymce.init({
   selector: 'textarea',  // Change this value according to your HTML
   plugins: 'ai',
@@ -9,7 +7,7 @@ tinymce.init({
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${variableToUse}`
+        'Authorization': `Bearer ${env}`
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
@@ -22,7 +20,7 @@ tinymce.init({
       .then((response) => response.ok ? response.json() : response.text())
       .then((data) => {
         if (typeof data === 'string') {
-          Promise.reject(`Failed to communicate with the ChatGPT API. ${env}`);
+          Promise.reject(`Failed to communicate with the ChatGPT API.  ${env}`);
         } else if (data.error) {
           Promise.reject(`Failed to communicate with the ChatGPT API because of ${data.error.type} error: ${data.error.message}`);
         } else {
