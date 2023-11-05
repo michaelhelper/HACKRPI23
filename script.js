@@ -1,4 +1,7 @@
 
+require('dotenv').config();
+
+
 tinymce.init({
   selector: 'textarea',  // Change this value according to your HTML
   plugins: 'ai',
@@ -8,7 +11,7 @@ tinymce.init({
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
+        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
