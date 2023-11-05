@@ -285,7 +285,7 @@ function allcodes(map){
                                 }
                             }
                             // let hospitalList = document.getElementById('hospital-list');
-                            newFinalArray.push({name: facility.name, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, totalWaitInMinutes: (totalTimeHours * 60) + totalTimeMinutes});
+                            newFinalArray.push({name: facility, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, totalWaitInMinutes: (totalTimeHours * 60) + totalTimeMinutes});
                             // const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, x: facility.coords.x, y: facility.coords.y}, map);
                             // hospitalList.appendChild(hospitalElement);
 						})
