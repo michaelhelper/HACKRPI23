@@ -13,44 +13,13 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
     return distance;
 }
 
-// Hide or show the hospital based on toggle
-function toggleHospital(element){
-    // Go through all hospitals and hide them
-    const hospitals = document.getElementsByClassName("hospital-info");
-    for (let i = 0; i < hospitals.length; i++) {
-        hospitals[i].style.display = "none";
-    }
-
-    // fade in the hospital that was clicked
-    element.style.display = "block";
-    element.style.opacity = 0;
-    (function fade() {
-        var val = parseFloat(element.style.opacity);
-        if (!((val += .1) > 1)) {
-            element.style.opacity = val;
-            requestAnimationFrame(fade);
-        }
-    })();
-}
-
 function createHospitalElement(hospital) {
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
-    // add an onlick event that calls toggleHospital
-
-    const hospitalMain = document.createElement("div");
-    hospitalMain.classList.add("hospital-main");
 
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
     nameElement.textContent = hospital.name;
-   // console.log(hospital.name)
-    const timeElement = document.createElement("p");
-    timeElement.classList.add("hospital-time");
-    timeElement.textContent = hospital.totalTime;
-
-    hospitalMain.appendChild(nameElement);
-    hospitalMain.appendChild(timeElement);
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
@@ -58,63 +27,33 @@ function createHospitalElement(hospital) {
     const traumalvl = hospital.traumalvl;
     var traumalvl_rate;
     if (traumalvl >= 4){
-        traumalvl_rate = "This hospital cannot handle serious injuries"
+        traumalvl_rate = "Low"
     }
-    else if (traumalvl == 3){
-        traumalvl_rate = "3 - This hospital can stabilize serious injuries"
-    }
-    else if (traumalvl == 2){
-        traumalvl_rate = "2 - This hospital can handle most serious injuries"
+    else if (traumalvl > 2){
+        traumalvl_rate = "Medium"
     }
     else{
-        traumalvl_rate = "1 - Gold standard in injury care, can handle all injuries"
+        traumalvl_rate = "High"
     }
     
     const peds = hospital.peds;
-    var peds_rate = peds ? "This hospital has children specialists" : "";
+    var peds_rate = peds ? "Yes" : "No";
 
     const perinatal = hospital.perinatal;
-    var perinatal_rate = perinatal ? "This hospital can deal with birth and newborn complications" : "";
+    var perinatal_rate = perinatal ? "Yes" : "No";
 
     const PCI = hospital.PCI;
-    var PCI_rate = PCI ? "This hospital can handle heart attacks and heart problems" : "This hospital cannot handle heart attacks and heart problems";
+    var PCI_rate = PCI ? "Yes" : "No";
 
     const stroke = hospital.stroke;
-    var stroke_rate;
-    if (stroke == "none"){
-        stroke_rate = "This hospital cannot handle strokes"
-    }
-    else if (stroke == "primary"){
-        stroke_rate = "This hospital can stabilize strokes"
-    }
-    else if (stroke == "comprehensive"){
-        stroke_rate = "This hospital can treat strokes"
-    }
+    var stroke_rate = stroke
 
-    var driveTime = hospital.drivingTime;
-    var waitTime = hospital.waitTime;
+    infoElement.innerHTML = `<span id="bold">Trauma Level:</span>&nbsp;${traumalvl_rate} |&nbsp;<span id="bold">Pediatric:</span>&nbsp;${peds_rate} |&nbsp;<span id="bold">Stroke:</span>&nbsp;${stroke_rate} |&nbsp;<span id="bold">Birth:</span>&nbsp;${perinatal_rate} |&nbsp;<span id="bold">Artery Care:</span>&nbsp;${PCI_rate} |&nbsp;<span id="bold">Burns:</span>&nbsp;${hospital.burn} `;
+    // |&nbsp;<span id="bold">Pediatric</span> ${hospital.peds} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Birth:</span> ${hospital.perinatal} | <span id="bold">Artery Care:</span> ${hospital.PCI} | <span id="bold">Burns:</span> ${hospital.burn} `;
 
-
-    infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`
-    if(peds_rate != ""){
-        infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`
-    }
-    infoElement.innerHTML += `<p><b>Stroke:</b>&nbsp;${stroke_rate}</p>`
-    if(perinatal_rate != ""){
-        infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`
-    }
-    infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`
-    infoElement.innerHTML += `<p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p>`;
-
-    infoElement.innerHTMl += `<button id="get-directions">Get Directions</button>`
-    hospitalElement.onclick = function() {
-        toggleHospital(infoElement);
-    }
-
-    hospitalElement.appendChild(hospitalMain);
+    hospitalElement.appendChild(nameElement);
     hospitalElement.appendChild(infoElement);
 
-    
     return hospitalElement;
 }
 
@@ -123,6 +62,8 @@ function createHospitalElement(hospital) {
 
 window.onload = function() {
     // Create map
+    "x": 42.734253, 
+    "y": -73.672481
     const map = L.map('map').setView([42.734253, -73.672481], 11);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
