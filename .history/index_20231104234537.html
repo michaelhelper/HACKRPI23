@@ -12,16 +12,6 @@
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKz4foAQ4IxHZVkx1s_hLUYFmcFrZcSjU&callback=initMap"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/openai@0.27.0/dist/openai.js"></script>
-  <script>
-      
-  const openai = new OpenAI({
-    apiKey: "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",
-  });
-      
-  </script>
-  <script src="./gpting.js"></script>
   <script src="./maps.js"></script>
   <style src="./style.css"></style>
   <script src="https://kit.fontawesome.com/91cf021679.js" crossorigin="anonymous"></script>
@@ -42,7 +32,10 @@
                 <input type="text" id="search-input" placeholder="Search for a zip code">
                 <button id="search-button"><i class="fas fa-search"></i></button>
         </div>
-
+        <div id="hi">
+                <input type="text" id="search-input" placeholder="Search for a zip code">
+                <button id="searc-button"><i class="fas fa-search"></i></button>
+        </div>
         <div id="hospitals">
             <div id="hospital-list">
                 <div class="hospital">

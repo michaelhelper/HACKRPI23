@@ -78,16 +78,6 @@ window.onload = function() {
             const lng = position.coords.longitude;
             // Set the map view to the lat/long
             map.setView([lat, lng], 11);
-
-            var element = $("#search-input");
-            // get the original width and height of the element
-            var originalWidth = element.width();
-            // animate the width and height to twice their original values
-            element.animate({
-                width: "*=2", // multiply the width by 2
-            }, 500); // set the duration to 500 milliseconds
-            element.placeholder = 'Enter response here';
-
         });
     }
 
@@ -154,34 +144,28 @@ window.onload = function() {
             }
             // Concatenate the names of the 5 closest hospitals
             const closestHospitalNames = allHospitals.slice(0, 5).map(hospital => hospital.name).join(', ');
+            const apiKeyMaps
+            // Add the 5 closest hospitals to the closestHospitals array
             console.log(`The 5 closest hospitals are: ${closestHospitalNames}.`);
             console.log(closestHospitals);
-            
-            // Create a DirectionsService object to use the Directions API
-            let directionsService = new google.maps.DirectionsService();
             closestHospitals.forEach(facility => {
+                // console log the driving time between the user's location and each hospital after calling the Google Directions API
                 let hospitalName = facility.name;
                 let hospitalCoords = facility.coords;
-                let hospitalLocation = new google.maps.LatLng(hospitalCoords.x, hospitalCoords.y);
+                let hospitalLocation = `${hospitalCoords.x},${hospitalCoords.y}`;
                 let userLocation = map.getCenter();
-            
-                // Create a DirectionsRequest object
-                let request = {
-                    origin: userLocation,
-                    destination: hospitalLocation,
-                    travelMode: 'DRIVING'
-                };
-            
-                // Make a directions request
-                directionsService.route(request, function(result, status) {
-                    if (status == 'OK') {
-                        // Get the driving time from the result
-                        const drivingTime = result.routes[0].legs[0].duration.text;
-                        console.log(`It will take ${drivingTime} to drive from ${userLocation} to ${hospitalName}.`);
-                    }
-                });
-                // wait 10 ms before making the next request
-                setTimeout(function() {}, 10);
+                let userCoords = userLocation.toString();
+                let userLocationString = userCoords.replace('LatLng(', '').replace(')', '');
+                // use directions service instead
+                let directionsUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${userLocationString}&destination=${hospitalLocation}&mode=driving&key=${apiKeyMaps}`;
+                console.log(directionsUrl);
+                fetch(directionsUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const drivingTime = data.routes[0].legs[0].duration.text;
+                        console.log(`It will take ${drivingTime} to drive from ${userLocationString} to ${hospitalName}.`);
+                    })
+                    .catch(error => console.log(error));
             });
         });
 }
