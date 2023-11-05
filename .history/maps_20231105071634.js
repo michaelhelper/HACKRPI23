@@ -222,6 +222,10 @@ function allcodes(map){
             for (let i = 0; i < 18; i++) {
                 closestHospitals.push(allHospitals[i]);
             }
+            // Concatenate the names of the 5 closest hospitals
+            const closestHospitalNames = allHospitals.slice(0, 5).map(hospital => hospital.name).join(', ');
+            console.log(`The 5 closest hospitals are: ${closestHospitalNames}.`);
+            console.log(closestHospitals);
             
             // Create a DirectionsService object to use the Directions API
             let directionsService = new google.maps.DirectionsService();
