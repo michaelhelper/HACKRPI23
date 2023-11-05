@@ -1,27 +1,4 @@
 
-let variableToUse = "";
-
-fetch('/getOpenApiKey')
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if (data.apiKey) {
-      // Use the API key in your client-side code
-      const variableToUse = data.apiKey;
-      // ...
-    } else {
-      // Handle the case where the response does not contain an API key
-    }
-  })
-  .catch((error) => {
-    console.error('Fetch error:', error);
-    // Handle the error appropriately (e.g., show an error message to the user)
-  });
-
 
 tinymce.init({
   selector: 'textarea',  // Change this value according to your HTML
@@ -45,7 +22,7 @@ tinymce.init({
       .then((response) => response.ok ? response.json() : response.text())
       .then((data) => {
         if (typeof data === 'string') {
-          Promise.reject(`Failed to communicate with the ChatGPT API. ${data}`);
+          Promise.reject(`Failed to communicate with the ChatGPT API. ${env}`);
         } else if (data.error) {
           Promise.reject(`Failed to communicate with the ChatGPT API because of ${data.error.type} error: ${data.error.message}`);
         } else {
