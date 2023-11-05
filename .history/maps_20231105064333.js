@@ -340,7 +340,7 @@ function zipcode(map) {
     // Get the ZIP code from the form
     // const zipCode = document.getElementById('search-input').value;
     // alert(`The zip code is ${zipCode}`);
-    convertZipCode(map);
+    convertZipCode();
     setTimeout(function() {}, 1000);
     allcodes();
 }
