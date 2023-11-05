@@ -1,5 +1,5 @@
-let User_lat = 0;
-let User_lng = 0;
+let Userlat = 0;
+let Userlng = 0;
 // Calculate the distance between two sets of coordinates using the Haversine formula.
 function calculateDistance(lat1, lng1, lat2, lng2) {
     const radius = 6371; // Earth's radius in kilometers
@@ -138,8 +138,8 @@ window.onload = function() {
         navigator.geolocation.getCurrentPosition(function(position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
-            User_lat = lat;
-            User_lng = lng;
+            Userlat = lat;
+            Userlng = lng;
             // Set the map view to the lat/long
             map.setView([lat, lng], 11);
 			let userIcon = L.Icon.extend({
@@ -172,8 +172,6 @@ window.onload = function() {
             .then(data => {
                 const lat = data.results[0].geometry.location.lat;
                 const lng = data.results[0].geometry.location.lng;
-                User_lat = lat;
-                User_lng = lng;
                 // Set the map view to the lat/long
                 map.setView([lat, lng], 11);
                 alert(`The latitude is ${lat} and the longitude is ${lng}`);
@@ -214,7 +212,7 @@ window.onload = function() {
                 const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
-                let userLocation = google.maps.LatLng(User_lat, User_lng);
+                const userLocation = map.getCenter();
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
@@ -239,8 +237,7 @@ window.onload = function() {
 				let hospitalToken = facility.token;
                 let hospitalCoords = facility.coords;
                 let hospitalLocation = new google.maps.LatLng(hospitalCoords.x, hospitalCoords.y);
-                // let userLocation = map.getCenter();
-                let userLocation = new google.maps.LatLng(User_lat, User_lng);
+                let userLocation = map.getCenter();
             
                 // Create a DirectionsRequest object
                 let request = {

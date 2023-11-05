@@ -215,6 +215,7 @@ window.onload = function() {
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
                 let userLocation = google.maps.LatLng(User_lat, User_lng);
+                
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array

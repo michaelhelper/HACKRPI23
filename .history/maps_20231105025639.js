@@ -172,8 +172,7 @@ window.onload = function() {
             .then(data => {
                 const lat = data.results[0].geometry.location.lat;
                 const lng = data.results[0].geometry.location.lng;
-                User_lat = lat;
-                User_lng = lng;
+                User
                 // Set the map view to the lat/long
                 map.setView([lat, lng], 11);
                 alert(`The latitude is ${lat} and the longitude is ${lng}`);
@@ -214,7 +213,7 @@ window.onload = function() {
                 const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
-                let userLocation = google.maps.LatLng(User_lat, User_lng);
+                const userLocation = map.getCenter();
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
