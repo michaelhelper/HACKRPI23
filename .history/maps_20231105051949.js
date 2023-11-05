@@ -3,7 +3,7 @@ let user_lng = -149.863129;
 const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0'; // Replace with your Google Maps API key
 
 // Function to convert ZIP code to lat/long
-function convertZipCode() {
+function convertZipCode(l1, l2) {
     // Get the ZIP code from the form
     const zipCode = document.getElementById('search-input').value;
     const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${apiKey}`;
@@ -319,7 +319,5 @@ window.onload = function() {
     allcodes(map);
 }
 function zipcode() {
-    convertZipCode();
-    setTimeout(function() {}, 1000);
-    allcodes();
+    
 }

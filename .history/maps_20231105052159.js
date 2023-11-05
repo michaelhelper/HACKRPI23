@@ -320,6 +320,5 @@ window.onload = function() {
 }
 function zipcode() {
     convertZipCode();
-    setTimeout(function() {}, 1000);
     allcodes();
 }

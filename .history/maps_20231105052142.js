@@ -318,8 +318,70 @@ window.onload = function() {
     //call allcodes
     allcodes(map);
 }
-function zipcode() {
-    convertZipCode();
-    setTimeout(function() {}, 1000);
-    allcodes();
+let user_lat = 61.217381;
+let user_lng = -149.863129;
+const apiKey = 'YOUR_API_KEY'; // Replace with your Google Maps API key
+
+// Function to convert ZIP code to lat/long
+function convertZipCode() {
+    return new Promise((resolve, reject) => {
+        // Your code to convert ZIP code to lat/long goes here
+        // Once the conversion is complete, call resolve() to resolve the Promise
+    });
+}
+
+// Function to calculate the distance between two sets of coordinates using the Haversine formula
+function calculateDistance(lat1, lng1, lat2, lng2) {
+    // Your code to calculate the distance goes here
+}
+
+// Hide or show the hospital based on toggle
+function toggleHospital(element) {
+    // Your code to toggle the hospital goes here
+}
+
+// Function to create a hospital element
+function createHospitalElement(hospital) {
+    // Your code to create the hospital element goes here
+}
+
+// Function to display all hospitals on the map
+async function allcodes(map) {
+    // Wait for convertZipCode() to finish before continuing
+    await convertZipCode();
+
+    // Your code to display all hospitals on the map goes here
+}
+
+window.onload = function() {
+    const map = L.map('map').setView([user_lat, user_lng], 11);
+    // Get current location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            user_lat = lat;
+            user_lng = lng;
+            // Set the map view to the lat/long
+            map.setView([lat, lng], 11);
+            let userIcon = L.Icon.extend({
+                options: {
+                    iconUrl: "./resources/images/person.png",
+                    iconSize: [48,48],
+                    popupAnchor:  [0, 0]
+                }
+            });
+            const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+
+            // Call allcodes
+            allcodes(map);
+
+            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
+            const searchInput = document.getElementById('search-input');
+            searchInput.placeholder = 'Enter response here';
+        });
+    }
+
+    // Call allcodes
+    allcodes(map);
 }

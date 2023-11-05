@@ -319,7 +319,7 @@ window.onload = function() {
     allcodes(map);
 }
 function zipcode() {
-    convertZipCode();
-    setTimeout(function() {}, 1000);
-    allcodes();
+    //call zipcode and wait for it to finish then call allcodes
+    const map = L.map('map').setView([user_lat, user_lng], 11);
+    
 }

@@ -1,25 +1,5 @@
 let user_lat = 61.217381;
 let user_lng = -149.863129;
-const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0'; // Replace with your Google Maps API key
-
-// Function to convert ZIP code to lat/long
-function convertZipCode() {
-    // Get the ZIP code from the form
-    const zipCode = document.getElementById('search-input').value;
-    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${apiKey}`;
-    // Query the API using fetch()
-    fetch(geocodingUrl)
-        .then(response => response.json())
-        .then(data => {
-            const lat = data.results[0].geometry.location.lat;
-            const lng = data.results[0].geometry.location.lng;
-            // Set the map view to the lat/long
-            map.setView([lat, lng], 11);
-            alert(`The latitude is ${lat} and the longitude is ${lng}`);
-            user_lat = lat;
-            user_lng = lng;
-        });
-}
 // Calculate the distance between two sets of coordinates using the Haversine formula.
 function calculateDistance(lat1, lng1, lat2, lng2) {
     const radius = 6371; // Earth's radius in kilometers
@@ -154,6 +134,11 @@ function allcodes(map){
     }).addTo(map);
 
     // Get location from zip code
+
+    const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0'; // Replace with your Google Maps API key
+
+    // Function to convert ZIP code to lat/long
+    f
 
     // Attach the function to the button's click event
     const convertButton = document.getElementById('search-button');
@@ -319,7 +304,5 @@ window.onload = function() {
     allcodes(map);
 }
 function zipcode() {
-    convertZipCode();
-    setTimeout(function() {}, 1000);
-    allcodes();
+
 }

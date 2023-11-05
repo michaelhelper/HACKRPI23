@@ -319,7 +319,8 @@ window.onload = function() {
     allcodes(map);
 }
 function zipcode() {
+    //call zipcode and wait for it to finish then call allcodes
     convertZipCode();
-    setTimeout(function() {}, 1000);
-    allcodes();
+    
+
 }
