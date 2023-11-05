@@ -42,3 +42,4 @@
                     }`) : data).then((data) =>
                         data ?. choices[0] ?. message ?. content ?. trim()));
                 }
+                
