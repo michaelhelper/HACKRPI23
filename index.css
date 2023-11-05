@@ -127,7 +127,7 @@ a {
 }
 
 #available{
-    color: --theme-1
+    color: --theme-1;
     border-bottom: 1px solid var(--theme-1);
     font-size: 20px;
     font-weight: 600;
