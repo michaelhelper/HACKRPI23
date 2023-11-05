@@ -204,6 +204,7 @@ function allcodes(map){
     let counter = 0;
 
     fetch(facilityList)
+        return new Promise((resolve, reject) => {
         .then(response => response.json())
         .then(data => {
             data.hospitals.forEach(facility => {
@@ -297,17 +298,17 @@ function allcodes(map){
             });
             counter = counter + 1;
         });
+    });
     console.log(newFinalArray);
     // wait until the array is filled without using a timeout
     // sort the array by total time
     newFinalArray.sort(function(a, b) {
         return a.totalWaitInMinutes - b.totalWaitInMinutes;
     });
-    setTimeout(function() {}, 100000);
     for (let i = 0; i < 5; i++) {
         let hospitalList = document.getElementById('hospital-list');
         // wait for the array to be filled
-        
+
         const hospitalElement = createHospitalElement(newFinalArray[i], map);
         hospitalList.appendChild(hospitalElement);
     }

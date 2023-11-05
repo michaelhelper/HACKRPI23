@@ -303,10 +303,8 @@ function allcodes(map){
     newFinalArray.sort(function(a, b) {
         return a.totalWaitInMinutes - b.totalWaitInMinutes;
     });
-    setTimeout(function() {}, 100000);
     for (let i = 0; i < 5; i++) {
         let hospitalList = document.getElementById('hospital-list');
-        // wait for the array to be filled
         
         const hospitalElement = createHospitalElement(newFinalArray[i], map);
         hospitalList.appendChild(hospitalElement);
