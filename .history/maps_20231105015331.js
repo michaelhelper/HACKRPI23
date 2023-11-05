@@ -151,7 +151,7 @@ window.onload = function() {
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
-                allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: "", waitTime: "", totalTime: ""});
+                allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn });
             });
             // Sort the allHospitals array by distance
             allHospitals.sort(function(a, b) {
@@ -206,12 +206,10 @@ window.onload = function() {
                 // wait time looks like this: {"wait": "0h 46m"}
                 // driving time looks like this: drivingTime: "5 hours 36 mins"
                 // total time looks like this: "6 hours 22 mins"    
-                let waitTime = closestHospitals[counter].waitTime;
-                let drivingTime = closestHospitals[counter].drivingTime;
-                console.log(closestHospitals[counter]);
-                console.log(closestHospitals[counter].drivingTime]);
-                console.log(drivingTime);
+                let waitTime = closestHospitals[counter].;
+                let drivingTime = facility.drivingTime;
                 console.log(waitTime);
+                console.log(drivingTime);
                 let waitTimeHours = parseInt(waitTime.substring(0, 1));
                 let waitTimeMinutes = parseInt(waitTime.substring(3, 5));
                 let drivingTimeHours = parseInt(drivingTime.substring(0, 1));

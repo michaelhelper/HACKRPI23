@@ -209,7 +209,7 @@ window.onload = function() {
                 let waitTime = closestHospitals[counter].waitTime;
                 let drivingTime = closestHospitals[counter].drivingTime;
                 console.log(closestHospitals[counter]);
-                console.log(closestHospitals[counter].drivingTime]);
+                console.log(closestHospitals[counter].drivingTime);
                 console.log(drivingTime);
                 console.log(waitTime);
                 let waitTimeHours = parseInt(waitTime.substring(0, 1));
@@ -223,8 +223,8 @@ window.onload = function() {
                     totalTimeMinutes = totalTimeMinutes - 60;
                 }
                 let totalTime = totalTimeHours + " hours " + totalTimeMinutes + " mins";
-                facility.totalTime = totalTime;
-                console.log(facility)
+                closestHospitals[counter].totalTime = totalTime;
+                console.log(totalTime);
                 //sort the allHospitals array by total wait time
                 // allHospitals.sort(function(a, b) {
                 //     return a.totalTime - b.totalTime;

@@ -209,7 +209,7 @@ window.onload = function() {
                 let waitTime = closestHospitals[counter].waitTime;
                 let drivingTime = closestHospitals[counter].drivingTime;
                 console.log(closestHospitals[counter]);
-                console.log(closestHospitals[counter].drivingTime]);
+                console.log(closestHospitals[counter]["drivingTime"]);
                 console.log(drivingTime);
                 console.log(waitTime);
                 let waitTimeHours = parseInt(waitTime.substring(0, 1));
