@@ -327,6 +327,13 @@ window.onload = function() {
     //call allcodes
     allcodes(map);
 }
+
+function clickPress(event) {
+    if (event.keyCode == 13) {
+        zipcode();
+    }
+}
+
 function zipcode() {
     // Get the ZIP code from the form
     const zipCode = document.getElementById('search-input').value;
