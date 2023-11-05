@@ -17,6 +17,7 @@ function convertZipCode() {
             const lng = data.results[0].geometry.location.lng;
             // Set the map view to the lat/long
             theMap.setView([lat, lng], 11);
+            // alert(`The latitude is ${lat} and the longitude is ${lng}`);
             user_lat = lat;
             user_lng = lng;
         });

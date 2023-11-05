@@ -8,6 +8,7 @@ function convertZipCode() {
     // Get the ZIP code from the form
     const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0';
     const zipCode = document.getElementById('search-input').value;
+    alert(`The zip code is ${zipCode}`);
     const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${apiKey}`;
     // Query the API using fetch()
     fetch(geocodingUrl)
@@ -17,6 +18,7 @@ function convertZipCode() {
             const lng = data.results[0].geometry.location.lng;
             // Set the map view to the lat/long
             theMap.setView([lat, lng], 11);
+            // alert(`The latitude is ${lat} and the longitude is ${lng}`);
             user_lat = lat;
             user_lng = lng;
         });
