@@ -298,10 +298,6 @@ function allcodes(map){
             counter = counter + 1;
         });
     console.log(newFinalArray);
-    // wait until the array is filled without using a timeout
-    while (newFinalArray.length < 5) {
-        console.log(newFinalArray.length);
-    }
     // sort the array by total time
     newFinalArray.sort(function(a, b) {
         return a.totalWaitInMinutes - b.totalWaitInMinutes;

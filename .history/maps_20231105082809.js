@@ -284,10 +284,10 @@ function allcodes(map){
                                     totalTimeMinutes = totalTimeMinutes - 60;
                                 }
                             }
-                            // let hospitalList = document.getElementById('hospital-list');
-                            newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, totalWaitInMinutes: (totalTimeHours * 60) + totalTimeMinutes});
-                            // const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, x: facility.coords.x, y: facility.coords.y}, map);
-                            // hospitalList.appendChild(hospitalElement);
+                            let hospitalList = document.getElementById('hospital-list');
+                            newFinalArray.puah({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, totalWaitInMinutes: (totalTimeHours * 60) + totalTimeMinutes});
+                            const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, x: facility.coords.x, y: facility.coords.y}, map);
+                            hospitalList.appendChild(hospitalElement);
 						})
                     }
                 });
@@ -298,19 +298,15 @@ function allcodes(map){
             counter = counter + 1;
         });
     console.log(newFinalArray);
-    // wait until the array is filled without using a timeout
-    while (newFinalArray.length < 5) {
-        console.log(newFinalArray.length);
-    }
     // sort the array by total time
-    newFinalArray.sort(function(a, b) {
-        return a.totalWaitInMinutes - b.totalWaitInMinutes;
-    });
-    for (let i = 0; i < 5; i++) {
-        let hospitalList = document.getElementById('hospital-list');
-        const hospitalElement = createHospitalElement(newFinalArray[i], map);
-        hospitalList.appendChild(hospitalElement);
-    }
+    // newFinalArray.sort(function(a, b) {
+    //     return a.totalWaitInMinutes - b.totalWaitInMinutes;
+    // });
+    // for (let i = 0; i < 5; i++) {
+    //     let hospitalList = document.getElementById('hospital-list');
+    //     const hospitalElement = createHospitalElement(newFinalArray[i], map);
+    //     hospitalList.appendChild(hospitalElement);
+    // }
 }
 
 
