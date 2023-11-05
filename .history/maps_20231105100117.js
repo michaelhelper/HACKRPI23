@@ -4,7 +4,7 @@ let theMap;
 let marker;
 let newFinalArray = [];
 let alwaysEmptyArray = [];
-let arry_start = 0;
+let arry start
 
 
 // Function to convert ZIP code to lat/long
@@ -302,13 +302,10 @@ function allcodes(map){
     console.log(newFinalArray);
     // wait until the array is filled without using a timeout
     // sort the array by total time
-     // take the last 5 elements of the array and add them to a new array
-    let temp = [];
-    for (let i = 0; i < 5; i++) {
-        temp.push(newFinalArray[arry_start+i]);
-    }
-    arry_start = arry_start + 5;
-    temp.sort(function(a, b) {
+     // take the last 5 elements of the array
+    for 
+
+    newFinalArray.sort(function(a, b) {
         return a.totalWaitInMinutes - b.totalWaitInMinutes;
     });
     setTimeout(function() {}, 100000);
@@ -316,7 +313,7 @@ function allcodes(map){
         let hospitalList = document.getElementById('hospital-list');
         // wait for the array to be filled
         
-        const hospitalElement = createHospitalElement(temp[i], map);
+        const hospitalElement = createHospitalElement(newFinalArray[i], map);
         hospitalList.appendChild(hospitalElement);
     }
 }

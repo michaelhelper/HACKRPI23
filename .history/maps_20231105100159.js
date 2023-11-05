@@ -302,13 +302,16 @@ function allcodes(map){
     console.log(newFinalArray);
     // wait until the array is filled without using a timeout
     // sort the array by total time
-     // take the last 5 elements of the array and add them to a new array
-    let temp = [];
+     // take the last 5 elements of the array
     for (let i = 0; i < 5; i++) {
-        temp.push(newFinalArray[arry_start+i]);
+        let hospitalList = document.getElementById('hospital-list');
+        // wait for the array to be filled
+        
+        const hospitalElement = createHospitalElement(newFinalArray[arry_start+i], map);
+        hospitalList.appendChild(hospitalElement);
     }
-    arry_start = arry_start + 5;
-    temp.sort(function(a, b) {
+
+    newFinalArray.sort(function(a, b) {
         return a.totalWaitInMinutes - b.totalWaitInMinutes;
     });
     setTimeout(function() {}, 100000);
@@ -316,7 +319,7 @@ function allcodes(map){
         let hospitalList = document.getElementById('hospital-list');
         // wait for the array to be filled
         
-        const hospitalElement = createHospitalElement(temp[i], map);
+        const hospitalElement = createHospitalElement(newFinalArray[i], map);
         hospitalList.appendChild(hospitalElement);
     }
 }
