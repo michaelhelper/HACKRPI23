@@ -79,10 +79,14 @@ window.onload = function() {
             // Set the map view to the lat/long
             map.setView([lat, lng], 11);
 
-            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
-            const searchInput = document.getElementById('search-input');
-            searchInput.style.width = '250%';
-            searchInput.placeholder = 'Enter response here';
+            var element = $("#search-input");
+            // get the original width and height of the element
+            var originalWidth = element.width();
+            // animate the width and height to twice their original values
+            element.animate({
+                width: "*=2", // multiply the width by 2
+            }, 500); // set the duration to 500 milliseconds
+            element.placeholder = 'Enter response here';
 
         });
     }
