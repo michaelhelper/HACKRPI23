@@ -11,6 +11,46 @@
   <link href="resources/favicon.ico" rel="icon">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/openai@0.27.0/dist/openai.js"></script>
+
+<script>
+  // Initialize the OpenAI client using your API key
+  const openai = new OpenAI({
+    apiKey: "YOUR_OPENAI_API_KEY",
+  });
+
+  // Define a function to make a chat request
+  async function chatRequest() {
+    try {
+      const message = "Which is the capital of Albania?";
+      const response = await openai.chat.create({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "system", content: "You are a helpful assistant." }, { role: "user", content: message }],
+      });
+
+      // Log the response to the console
+      console.log(response);
+
+      // You can handle the response as needed, such as displaying it in the HTML
+      // For example:
+      const responseText = response.data.choices[0].message.content;
+      document.getElementById("response-container").textContent = responseText;
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  }
+
+  // Attach an event listener to a button or an input field to trigger the chatRequest function
+  document.getElementById("chat-button").addEventListener("click", chatRequest);
+
+
+
+
+
+</script>
+
   <style src="./style.css"></style>
   <script src="./gpting.js"></script>
   <script src="https://kit.fontawesome.com/91cf021679.js" crossorigin="anonymous"></script>
@@ -27,7 +67,7 @@
         </div>
     </nav>
     <div id="content">
-        <div id="hi">
+        <div id="chat-button">
                 <input type="text" id="searc-input" placeholder="Search for a zip code">
                 <button id="searc-button"><i class="fas fa-search"></i></button>
         </div>
@@ -37,27 +77,4 @@
 
 </html>
 
-
-<script>
-exports.chatReq = async (req, res) => {
-  try {
-    const message = "Which is the capital of Albania?";
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: message }],
-      temperature: 0,
-      max_tokens: 1000,
-    });
-
-    // Log the response to the console
-    console.log(response);
-
-    // Send the response to the client
-    res.status(200).json(response);
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-};
-
-</script>
 
