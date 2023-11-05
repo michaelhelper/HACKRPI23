@@ -204,23 +204,18 @@ window.onload = function() {
                 // total time looks like this: "6 hours 22 mins"    
                 let waitTime = facility.waitTime;
                 let drivingTime = facility.drivingTime;
-                let waitTimeHours = parseInt(waitTime.substring(0, 1));
-                let waitTimeMinutes = parseInt(waitTime.substring(3, 5));
-                let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
-                let drivingTimeMinutes = parseInt(drivingTime.substring(8, 10));
-                let totalTimeHours = waitTimeHours + drivingTimeHours;
-                let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
-                if (totalTimeMinutes >= 60) {
-                    totalTimeHours = totalTimeHours + 1;
-                    totalTimeMinutes = totalTimeMinutes - 60;
-                }
-                let totalTime = totalTimeHours + " hours " + totalTimeMinutes + " mins";
-                facility.totalTime = totalTime;
-                console.log(facility)
+                let waitTimeArray = waitTime.split(" ");
+                let waitTimeHours = waitTimeArray[0].split("h");
+                let waitTimeMinutes = waitTimeArray[1].split("m");
+                let drivingTimeArray = drivingTime.split(" ");
+                let drivingTimeHours = drivingTimeArray[0];
+                let drivingTimeMinutes = drivingTimeArray[2];
+                
                 //sort the allHospitals array by total wait time
-                // allHospitals.sort(function(a, b) {
-                //     return a.totalTime - b.totalTime;
-                // });
+                allHospitals.sort(function(a, b) {
+                    return a.totalTime - b.totalTime;
+                });
+                console.log(allHospitals);
                 // Add each hospital to the hospital-list
                 const hospitalElement = createHospitalElement(facility);
                 hospitalList.appendChild(hospitalElement);

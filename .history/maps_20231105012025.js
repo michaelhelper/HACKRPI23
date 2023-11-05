@@ -221,6 +221,7 @@ window.onload = function() {
                 // allHospitals.sort(function(a, b) {
                 //     return a.totalTime - b.totalTime;
                 // });
+                console.log(allHospitals);
                 // Add each hospital to the hospital-list
                 const hospitalElement = createHospitalElement(facility);
                 hospitalList.appendChild(hospitalElement);

@@ -209,18 +209,17 @@ window.onload = function() {
                 let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
                 let drivingTimeMinutes = parseInt(drivingTime.substring(8, 10));
                 let totalTimeHours = waitTimeHours + drivingTimeHours;
-                let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
                 if (totalTimeMinutes >= 60) {
                     totalTimeHours = totalTimeHours + 1;
                     totalTimeMinutes = totalTimeMinutes - 60;
                 }
                 let totalTime = totalTimeHours + " hours " + totalTimeMinutes + " mins";
                 facility.totalTime = totalTime;
-                console.log(facility)
                 //sort the allHospitals array by total wait time
-                // allHospitals.sort(function(a, b) {
-                //     return a.totalTime - b.totalTime;
-                // });
+                allHospitals.sort(function(a, b) {
+                    return a.totalTime - b.totalTime;
+                });
+                console.log(allHospitals);
                 // Add each hospital to the hospital-list
                 const hospitalElement = createHospitalElement(facility);
                 hospitalList.appendChild(hospitalElement);
