@@ -313,7 +313,7 @@ function allcodes(map){
 
 
 
-function after_map_loads() {
+function() {
     theMap = L.map('map').setView([user_lat, user_lng], 11);
     // Get current location
     if (navigator.geolocation) {
