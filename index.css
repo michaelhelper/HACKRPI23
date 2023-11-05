@@ -57,7 +57,7 @@ body {
     color: var(--theme-0);
 }
 
-span.bold{
+.bold span{
     font-weight: 600;
 }
 
@@ -145,7 +145,7 @@ html, body {
     align-items: flex-start;
     justify-content: center;
     margin: 0 0 20px 80px;
-    width: 500px;
+    width: 700px;
     height: 70px;
     background-color: var(--theme-1);
     border-radius: 20px;

@@ -13,22 +13,6 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
     return distance;
 }
 
-const hospitals = [
-    {
-        name: "Hospital 1",
-        distance: "4.8 mi",
-        time: "13 mins",
-        wait: "1hr 40 min"
-    },
-    {
-        name: "Hospital 2",
-        distance: "5.2 mi",
-        time: "15 mins",
-        wait: "1hr 20 min"
-    },
-    // Add more hospitals as needed
-];
-
 function createHospitalElement(hospital) {
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
@@ -39,7 +23,33 @@ function createHospitalElement(hospital) {
 
     const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
-    infoElement.innerHTML = `<span id="bold">Distance:</span> ${hospital.distance} | <span id="bold">Time:</span> ${hospital.time} | <span id="bold">Wait:</span> ${hospital.wait}`;
+
+    const traumalvl = hospital.traumalvl;
+    var traumalvl_rate;
+    if (traumalvl >= 4){
+        traumalvl_rate = "Low"
+    }
+    else if (traumalvl > 2){
+        traumalvl_rate = "Medium"
+    }
+    else{
+        traumalvl_rate = "High"
+    }
+    
+    const peds = hospital.peds;
+    var peds_rate = peds ? "Yes" : "No";
+
+    const perinatal = hospital.perinatal;
+    var perinatal_rate = perinatal ? "Yes" : "No";
+
+    const PCI = hospital.PCI;
+    var PCI_rate = PCI ? "Yes" : "No";
+
+    const stroke = hospital.stroke;
+    var stroke_rate = stroke ? "Yes" : "No";
+
+    infoElement.innerHTML = `<span id="bold">Trauma Level:</span>&nbsp;${traumalvl_rate} | <span id="bold">Pediatric:</span>&nbsp;${peds_rate} | <span id="bold">Stroke:</span>&nbsp;${stroke_rate} | <span id="bold">Birth:</span>&nbsp;${perinatal_rate} | <span id="bold">Artery Care:</span>&nbsp;${PCI_rate} | <span id="bold">Burns:</span>&nbsp;${hospital.burn} `;
+    // | <span id="bold">Pediatric</span> ${hospital.peds} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Stroke:</span> ${hospital.stroke} | <span id="bold">Birth:</span> ${hospital.perinatal} | <span id="bold">Artery Care:</span> ${hospital.PCI} | <span id="bold">Burns:</span> ${hospital.burn} `;
 
     hospitalElement.appendChild(nameElement);
     hospitalElement.appendChild(infoElement);
@@ -94,31 +104,6 @@ window.onload = function() {
         await convertZipCode(l1,l2);
         console.log(`The latitude is ${l1} and the longitude is ${l2}`);
         // You can save location.lat and location.lng to a variable or perform other actions here.
- 
-const hospitals = [
-    {
-        name: "Hospital 1",
-        distance: "4.8 mi",
-        time: "13 mins",
-        wait: "1hr 40 min"
-    },
-    {
-        name: "Hospital 2",
-        distance: "5.2 mi",
-        time: "15 mins",
-        wait: "1hr 20 min"
-    },
-    // Add more hospitals as needed
-];
-      
-      const hospitalList = document.getElementById('hospital-list');
-        hospitalList.innerHTML = '';
-
-        // Add each hospital to the hospital-list
-        hospitals.forEach(hospital => {
-            const hospitalElement = createHospitalElement(hospital);
-            hospitalList.appendChild(hospitalElement);
-        });
 
       } catch (error) {
         console.error('An error occurred:', error);
@@ -141,6 +126,19 @@ const hospitals = [
         data.hospitals.forEach(facility => {
         const marker = L.marker([facility.coords.x, facility.coords.y]).addTo(map);
         marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
+
+              
+      const hospitalList = document.getElementById('hospital-list');
+      hospitalList.innerHTML = '';
+      var i = 0;
+      // Add each hospital to the hospital-list
+      data.hospitals.forEach(facility => {
+          if(i < 5){
+          const hospitalElement = createHospitalElement(facility);
+          hospitalList.appendChild(hospitalElement);
+          i++;
+          }
+      });
         // add a popup not attached to a marker
         // const popup = L.popup()
         // .setLatLng([facility.coords.x, facility.coords.y])
