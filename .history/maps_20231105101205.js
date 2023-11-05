@@ -343,7 +343,7 @@ window.onload = function() {
             allcodes(theMap);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
-            searchInput.placeholder = 'Search for a zip code';
+            searchInput.placeholder = 'Search for a ';
         });
     }
     // wait 10 ms before making the next request
