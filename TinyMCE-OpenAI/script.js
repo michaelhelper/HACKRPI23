@@ -1,4 +1,6 @@
-const api_key = "68r83o9poe4v486tnff0u32lv9esr7t53limuhtkbmuxm0n6"
+const api_key = <OPENAI_API_KEY>
+
+tinymce.init({
    tinymce.init({
         selector: 'textarea',
         height: '700px',
