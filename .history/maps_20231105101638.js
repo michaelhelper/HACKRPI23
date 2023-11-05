@@ -2,6 +2,7 @@ let user_lat = 42.729219;
 let user_lng = -73.6794773;
 let theMap;
 var marker;
+var first = true;
 let newFinalArray = [];
 
 

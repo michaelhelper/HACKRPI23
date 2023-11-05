@@ -1,7 +1,7 @@
 let user_lat = 42.729219;
 let user_lng = -73.6794773;
 let theMap;
-var marker;
+let marker;
 let newFinalArray = [];
 
 
@@ -16,7 +16,6 @@ function convertZipCode() {
     fetch(geocodingUrl)
         .then(response => response.json())
         .then(data => {
-            marker.remove();
             const lat = data.results[0].geometry.location.lat;
             const lng = data.results[0].geometry.location.lng;
             // Set the map view to the lat/long
