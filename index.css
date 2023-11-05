@@ -84,6 +84,7 @@ a {
     align-items: center;
     justify-content: center;
     /* the greater of either fit content or calc(100vh- 90px) */
+    
     height: max(calc(100vh - 90px), fit-content);
 }
 
@@ -121,6 +122,7 @@ a {
 
 #search{
     display: inline-block;
+    margin-top: 50px;
 }
 
 #hospitals{

@@ -1,11 +1,10 @@
 let user_lat = 61.217381;
 let user_lng = -149.863129;
-
+const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0';
 
 // Function to convert ZIP code to lat/long
 function convertZipCode() {
     // Get the ZIP code from the form
-    const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0';
     const zipCode = document.getElementById('search-input').value;
     const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${apiKey}`;
     // Query the API using fetch()
@@ -144,8 +143,6 @@ function createHospitalElement(hospital) {
 }
 
 function allcodes(map){
-
-    const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0';
     
     // Initialize allHospitals array
     const allHospitals = [];
