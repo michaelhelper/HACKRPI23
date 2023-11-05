@@ -144,11 +144,13 @@ window.onload = function() {
             }
             // Concatenate the names of the 5 closest hospitals
             const closestHospitalNames = allHospitals.slice(0, 5).map(hospital => hospital.name).join(', ');
+            const apiKeyMaps = 'AIzaSyDKz4foAQ4IxHZVkx1s_hLUYFmcFrZcSjU';
             console.log(`The 5 closest hospitals are: ${closestHospitalNames}.`);
             console.log(closestHospitals);
             
             // Create a DirectionsService object to use the Directions API
             let directionsService = new google.maps.DirectionsService();
+            
             closestHospitals.forEach(facility => {
                 let hospitalName = facility.name;
                 let hospitalCoords = facility.coords;
@@ -170,8 +172,7 @@ window.onload = function() {
                         console.log(`It will take ${drivingTime} to drive from ${userLocation} to ${hospitalName}.`);
                     }
                 });
-                // wait 10 ms before making the next request
-                setTimeout(function() {}, 10);
             });
+1            
         });
 }
