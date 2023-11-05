@@ -189,15 +189,13 @@ window.onload = function() {
                         console.log(`It will take ${drivingTime} to drive from ${userLocation} to ${hospitalName}.`);
                         // add the driving time to the hospital object
                         closestHospitals[counter].drivingTime = drivingTime;
-                        setTimeout(function() {}, 10);
 						fetch("./API/getWaittime.php?hosp="+hospitalToken).then(x => x.text()).then((txt) => {
 							console.log(`There will be a ${txt} wait at ${hospitalName}.`);
                             // add the wait time to the hospital object
                             // wait time looks like this: {"wait": "0h 46m"}
                             let waitTime = JSON.parse(txt);
                             console.log(waitTime["wait"]);
-                            // add the wait time of 2ms
-
+                            // 
                             closestHospitals[counter].waitTime = waitTime["wait"];
 						})
                     }

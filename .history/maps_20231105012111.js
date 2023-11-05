@@ -189,17 +189,27 @@ window.onload = function() {
                         console.log(`It will take ${drivingTime} to drive from ${userLocation} to ${hospitalName}.`);
                         // add the driving time to the hospital object
                         closestHospitals[counter].drivingTime = drivingTime;
-                        setTimeout(function() {}, 10);
-						fetch("./API/getWaittime.php?hosp="+hospitalToken).then(x => x.text()).then((txt) => {
-							console.log(`There will be a ${txt} wait at ${hospitalName}.`);
+                        fetch("./API/getWaittime.php?hosp="+hospitalToken).then(x => x.text()).then((txt) => {
+                            console.log(`There will be a ${txt} wait at ${hospitalName}.`);
                             // add the wait time to the hospital object
                             // wait time looks like this: {"wait": "0h 46m"}
                             let waitTime = JSON.parse(txt);
                             console.log(waitTime["wait"]);
-                            // add the wait time of 2ms
-
                             closestHospitals[counter].waitTime = waitTime["wait"];
-						})
+                            // calculate the total time and add it to the hospital object
+                            let waitTimeHours = parseInt(waitTime.substring(0, 1));
+                            let waitTimeMinutes = parseInt(waitTime.substring(3, 5));
+                            let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
+                            let drivingTimeMinutes = parseInt(drivingTime.substring(8, 10));
+                            let totalTimeHours = waitTimeHours + drivingTimeHours;
+                            let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                            if (totalTimeMinutes >= 60) {
+                                totalTimeHours = totalTimeHours + 1;
+                                totalTimeMinutes = totalTimeMinutes - 60;
+                            }
+                            let totalTime = totalTimeHours + " hours " + totalTimeMinutes + " mins";
+                            closestHospitals[counter].totalTime = totalTime;
+                        })
                     }
                 });
                 const hospitalList = document.getElementById('hospital-list');
