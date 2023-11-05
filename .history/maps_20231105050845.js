@@ -34,12 +34,16 @@ function toggleHospital(element){
     })();
 }
 
+function delete_hospitals(){
+
+    }
+}
+
 function createHospitalElement(hospital) {
     const hospitals = document.getElementsByClassName("hospital");
     for (let i = 0; i < hospitals.length; i++) {
     console.log(hospitals[i]);
     hospitals[i].remove();
-    }
 
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
