@@ -3,6 +3,7 @@ let user_lng = -73.6794773;
 let theMap;
 let marker;
 let newFinalArray = [];
+let alwaysEmptyArray = [];
 let arry_start = 0;
 
 
@@ -285,10 +286,10 @@ function allcodes(map){
                                     totalTimeMinutes = totalTimeMinutes - 60;
                                 }
                             }
-                            let hospitalList = document.getElementById('hospital-list');
+                            // let hospitalList = document.getElementById('hospital-list');
                             newFinalArray.push({name: facility.name, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, totalWaitInMinutes: (totalTimeHours * 60) + totalTimeMinutes});
-                            const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, x: facility.coords.x, y: facility.coords.y}, map);
-                            hospitalList.appendChild(hospitalElement);
+                            // const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, x: facility.coords.x, y: facility.coords.y}, map);
+                            // hospitalList.appendChild(hospitalElement);
 						})
                     }
                 });
@@ -298,22 +299,22 @@ function allcodes(map){
             });
             counter = counter + 1;
         });
-    // console.log(newFinalArray);
-    // // wait until the array is filled without using a timeout
-    // // sort the array by total time
-    // if (arry_start == 0){
-    //     newFinalArray.sort(function(a, b) {
-    //         return a.totalWaitInMinutes - b.totalWaitInMinutes;
-    //     });
-    // }
-    // setTimeout(function() {}, 100000);
-    // for (let i = 0; i < 5; i++) {
-    //     let hospitalList = document.getElementById('hospital-list');
-    //     // wait for the array to be filled
-    //     const hospitalElement = createHospitalElement(newFinalArray[i], map);
-    //     hospitalList.appendChild(hospitalElement);
-    // }
-    // arry_start += 5;
+    console.log(newFinalArray);
+    // wait until the array is filled without using a timeout
+    // sort the array by total time
+    if (arry_start == 0){
+        newFinalArray.sort(function(a, b) {
+            return a.totalWaitInMinutes - b.totalWaitInMinutes;
+        });
+    }
+    setTimeout(function() {}, 100000);
+    for (let i = 0; i < 5; i++) {
+        let hospitalList = document.getElementById('hospital-list');
+        // wait for the array to be filled
+        const hospitalElement = createHospitalElement(newFinalArray[i], map);
+        hospitalList.appendChild(hospitalElement);
+    }
+    arry_start += 5;
 }
 
 
