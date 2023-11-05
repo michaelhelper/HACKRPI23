@@ -311,7 +311,6 @@ function allcodes(map){
 
 
 window.onload = function() {
-    var hospitalList = document.getElementById('hospital-list');
     theMap = L.map('map').setView([user_lat, user_lng], 11);
     // Get current location
     if (navigator.geolocation) {
