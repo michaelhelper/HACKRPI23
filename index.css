@@ -127,8 +127,10 @@ a {
 }
 
 #available{
-    margin-left: 400px;
-    border-bottom: #202020;
+    color: --theme-1
+    border-bottom: 1px solid var(--theme-1);
+    font-size: 20px;
+    font-weight: 600;
 }
 
 #hospitals{
