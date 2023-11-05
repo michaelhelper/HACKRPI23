@@ -53,7 +53,7 @@ function createHospitalElement(hospital) {
     hospitalMain.appendChild(nameElement);
     hospitalMain.appendChild(timeElement);
 
-    const infoElement = document.createElement("p");
+    const infoElement = document.createElement("div");
     infoElement.classList.add("hospital-info");
 
     const traumalvl = hospital.traumalvl;
@@ -75,7 +75,7 @@ function createHospitalElement(hospital) {
     var peds_rate = peds ? "This hospital has children specialists" : "";
 
     const perinatal = hospital.perinatal;
-    var perinatal_rate = perinatal ? "This hospital can deal with birth and newbord complications" : "";
+    var perinatal_rate = perinatal ? "This hospital can deal with birth and newborn complications" : "";
 
     const PCI = hospital.PCI;
     var PCI_rate = PCI ? "This hospital can handle heart attacks and heart problems" : "This hospital cannot handle heart attacks and heart problems";
@@ -96,16 +96,16 @@ function createHospitalElement(hospital) {
     var waitTime = hospital.waitTime;
 
 
-    infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`
+    infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`;
     if(peds_rate != ""){
-        infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`
+        infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`;
     }
-    infoElement.innerHTML += `<p><b>Stroke:</b>&nbsp;${stroke_rate}</p>`
+    infoElement.innerHTML += `<p><b>Stroke:</b>&nbsp;${stroke_rate}</p>`;
     if(perinatal_rate != ""){
-        infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`
+        infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`;
     }
-    infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`
-    infoElement.innerHTML += `<p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p>`;
+    infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`;
+    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><button>Go</button></div></div>`;
 
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
