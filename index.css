@@ -13,6 +13,10 @@ body {
     margin: 0;
     font-family: 'Inter';
 }
+
+a {
+    text-decoration: none;
+}
 .nav-container {
     height: 90px;
     display: flex;
@@ -130,7 +134,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 20px 0 0;
+    margin: 0 0 0 20px;
 }
 
 html, body {
