@@ -149,11 +149,25 @@ html, body {
     align-items: flex-start;
     justify-content: center;
     margin: 0 0 20px 80px;
-    width: 700px;
-    height: 70px;
+    width: 500px;
+    height: fit-content;
     background-color: var(--theme-1);
     border-radius: 20px;
+}
 
+.hospital-main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 500;
+    width: 480px;
+}
+
+.hospital-time{
+    display: flex;
+    text-align: right;
 }
 
 .hospital-name{
@@ -172,8 +186,13 @@ html, body {
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    margin: 0 0 0 20px;
+    margin: 0 0 5px 20px;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: 300;
     color: var(--theme-0);
+    display: none;
+}
+.hospital-info p{
+    margin-top: 0px;
+    width: fit-content;
 }
