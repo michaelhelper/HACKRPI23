@@ -53,7 +53,7 @@ function createHospitalElement(hospital) {
     hospitalMain.appendChild(nameElement);
     hospitalMain.appendChild(timeElement);
 
-    const infoElement = document.createElement("div");
+    const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
 
     const traumalvl = hospital.traumalvl;
@@ -96,17 +96,18 @@ function createHospitalElement(hospital) {
     var waitTime = hospital.waitTime;
 
 
-    infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`;
+    infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`
     if(peds_rate != ""){
-        infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`;
+        infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`
     }
-    infoElement.innerHTML += `<p><b>Stroke:</b>&nbsp;${stroke_rate}</p>`;
+    infoElement.innerHTML += `<p><b>Stroke:</b>&nbsp;${stroke_rate}</p>`
     if(perinatal_rate != ""){
-        infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`;
+        infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`
     }
-    infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`;
-    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><button>Go</button></div></div>`;
+    infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`
+    infoElement.innerHTML += `<p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p>`;
 
+    infoElement.innerHTMl += `<button id="get-directions">Get Directions</button>`
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
     }
@@ -213,7 +214,7 @@ window.onload = function() {
                 const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
-                let userLocation = google.maps.LatLng(User_lat, User_lng);
+                
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
