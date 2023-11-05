@@ -30,6 +30,7 @@ function convertZipCode() {
             });
             marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(theMap);
         });
+    // call allcodes
     allcodes(theMap);
 }
 // Calculate the distance between two sets of coordinates using the Haversine formula.
