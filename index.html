@@ -51,7 +51,8 @@
           <p>Content</p>
     </textarea>
     <script>
-    var env = "<?php echo $OPENAI_API_KEY; ?>";
+    var env = <?php echo $your_env_variable; ?>;
+    console.log(env);
     </script>
 </body>
 
