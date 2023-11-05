@@ -1,5 +1,4 @@
-
-require('dotenv').config();
+export const token = process.env['OPENAI_API_KEY'];
 
 
 tinymce.init({
@@ -11,7 +10,7 @@ tinymce.init({
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
