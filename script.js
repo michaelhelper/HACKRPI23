@@ -1,3 +1,6 @@
+
+let variableToUse = "";
+
 fetch('/getOpenApiKey')
   .then((response) => {
     if (!response.ok) {
