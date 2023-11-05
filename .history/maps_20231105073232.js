@@ -294,9 +294,10 @@ function allcodes(map){
                 // wait 10 ms before making the next request
                 setTimeout(function() {}, 10);
             });
+            console.log(newFinalArray);
+            
             counter = counter + 1;
         });
-    console.log(newFinalArray);
 }
 
 

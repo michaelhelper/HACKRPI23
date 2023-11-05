@@ -294,9 +294,9 @@ function allcodes(map){
                 // wait 10 ms before making the next request
                 setTimeout(function() {}, 10);
             });
+
             counter = counter + 1;
         });
-    console.log(newFinalArray);
 }
 
 

@@ -296,7 +296,6 @@ function allcodes(map){
             });
             counter = counter + 1;
         });
-    console.log(newFinalArray);
 }
 
 
