@@ -29,3 +29,7 @@ Being a brand-new team, we each got to experience the other's style's and though
 
 
 Dataset: [Dataset](https://github.com/tfinnm/HospitalData/)
+
+
+## Contributers
+![Contributers](https://badges.pufler.dev/contributors/michaelhelper/HACKRPI23?size=50&padding=5&bots=true)
