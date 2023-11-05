@@ -1,4 +1,6 @@
-export const token = process.env['OPENAI_API_KEY'];
+require('dotenv').config();
+
+const token = process.env.OPENAI_API_KEY;
 
 
 tinymce.init({
