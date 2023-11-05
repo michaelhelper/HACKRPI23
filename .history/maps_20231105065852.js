@@ -19,15 +19,7 @@ function convertZipCode() {
             theMap.setView([lat, lng], 11);
             user_lat = lat;
             user_lng = lng;
-            // Create a marker at the lat/long
-            let userIcon = L.Icon.extend({
-                options: {
-                    iconUrl: "./resources/images/person.png",
-                    iconSize: [48,48],
-                    popupAnchor:  [0, 0]
-                }
-            });
-            const marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(theMap);
+            // 
         });
 }
 // Calculate the distance between two sets of coordinates using the Haversine formula.
