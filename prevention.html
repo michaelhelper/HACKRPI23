@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <style src="./style.css"></style>
+  <script src="./gpting.js"></script>
   <script src="https://kit.fontawesome.com/91cf021679.js" crossorigin="anonymous"></script>
   <title>Emergency Room Compare</title>
 </head>
@@ -26,11 +27,37 @@
         </div>
     </nav>
     <div id="content">
-        <div id="search">
-                <input type="text" id="search-input" placeholder="Search for a zip code">
-                <button id="search-button"><i class="fas fa-search"></i></button>
+        <div id="hi">
+                <input type="text" id="searc-input" placeholder="Search for a zip code">
+                <button id="searc-button"><i class="fas fa-search"></i></button>
         </div>
+        <div id="response-container"></div>
     </div>
 </body>
 
 </html>
+
+
+<script>
+exports.chatReq = async (req, res) => {
+  try {
+    const message = "Which is the capital of Albania?";
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: message }],
+      temperature: 0,
+      max_tokens: 1000,
+    });
+
+    // Log the response to the console
+    console.log(response);
+
+    // Send the response to the client
+    res.status(200).json(response);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+</script>
+
