@@ -226,6 +226,7 @@ window.onload = function() {
                             }
                             newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins"});
                             console.log(newFinalArray[counter]);
+                            console.log(newFinalArray[counter]);
                             const hospitalElement = createHospitalElement(newFinalArray[counter]);
                             hospitalList.appendChild(hospitalElement);
 						})
