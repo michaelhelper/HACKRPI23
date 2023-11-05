@@ -1,5 +1,5 @@
 let user_lat = 61.217381;
-let user_lng = -149.863129;
+let userlng = -149.863129;
 // Calculate the distance between two sets of coordinates using the Haversine formula.
 function calculateDistance(lat1, lng1, lat2, lng2) {
     const radius = 6371; // Earth's radius in kilometers
@@ -148,7 +148,7 @@ window.onload = function() {
 					popupAnchor:  [0, 0]
 				}
 			});
-			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+			const marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
@@ -174,8 +174,6 @@ window.onload = function() {
                 // Set the map view to the lat/long
                 map.setView([lat, lng], 11);
                 alert(`The latitude is ${lat} and the longitude is ${lng}`);
-                user_lat = lat;
-                user_lng = lng;
             });
     }
 

@@ -174,8 +174,7 @@ window.onload = function() {
                 // Set the map view to the lat/long
                 map.setView([lat, lng], 11);
                 alert(`The latitude is ${lat} and the longitude is ${lng}`);
-                user_lat = lat;
-                user_lng = lng;
+                
             });
     }
 
