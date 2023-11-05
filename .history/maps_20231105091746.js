@@ -70,7 +70,7 @@ function toggleHospital(element){
 function createHospitalElement(hospital, map) {
     const hospitals = document.getElementsByClassName("hospital");
     if (hospitals.length > 4) {
-        // console.log(hospitals[0]);
+        console.log(hospitals[0]);
         hospitals[0].remove();
     }
 
@@ -252,7 +252,7 @@ function allcodes(map){
                         // add the driving time to the hospital object
                         // closestHospitals[counter].drivingTime = drivingTime;
 						fetch("./API/getWaittime.php?hosp="+hospitalToken).then(x => x.text()).then((txt) => {
-							// console.log(`There will be a ${txt} wait at ${hospitalName}.`);
+							console.log(`There will be a ${txt} wait at ${hospitalName}.`);
                             // add the wait time to the hospital object
                             // wait time looks like this: {"wait": "0h 46m"}
                             let waitTime = JSON.parse(txt);
@@ -297,7 +297,7 @@ function allcodes(map){
             });
             counter = counter + 1;
         });
-    // console.log(newFinalArray);
+    console.log(newFinalArray);
     // wait until the array is filled without using a timeout
     // sort the array by total time
     newFinalArray.sort(function(a, b) {
@@ -314,6 +314,7 @@ function allcodes(map){
 
 // run after the page loads
 window.onload = function() {
+    
     theMap = L.map('map').setView([user_lat, user_lng], 11);
     // Get current location
     if (navigator.geolocation) {

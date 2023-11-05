@@ -70,7 +70,7 @@ function toggleHospital(element){
 function createHospitalElement(hospital, map) {
     const hospitals = document.getElementsByClassName("hospital");
     if (hospitals.length > 4) {
-        // console.log(hospitals[0]);
+        console.log(hospitals[0]);
         hospitals[0].remove();
     }
 
