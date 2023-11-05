@@ -128,14 +128,14 @@ window.onload = function() {
 		options: {
 			iconUrl: "./resources/images/hospital.png",
 			iconSize: [48,48],
-			popupAnchor:  [28, 28]
+			popupAnchor:  [0, 0]
 		}
 	});
 	let userIcon = L.Icon.extend({
 		options: {
 			iconUrl: "./resources/images/person.png",
 			iconSize: [48,48],
-			popupAnchor:  [28, 28]
+			popupAnchor:  [0, 0]
 		}
 	});
     fetch(facilityList)
