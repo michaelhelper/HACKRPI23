@@ -131,19 +131,33 @@ window.onload = function() {
     // Run through all hospitals in the facility list .json file and add them to the map
     const facilityList = './facilitydata.json';
     let closestHospitals = [];
+	let hospIcon = L.Icon.extend({
+		options: {
+			iconUrl: "./resources/images/hospital.png",
+			iconSize: [48,48],
+			popupAnchor:  [28, 28]
+		}
+	});
+	let userIcon = L.Icon.extend({
+		options: {
+			iconUrl: "./resources/images/person.png",
+			iconSize: [48,48],
+			popupAnchor:  [28, 28]
+		}
+	});
     fetch(facilityList)
 
         .then(response => response.json())
         .then(data => {
             data.hospitals.forEach(facility => {
-                const marker = L.marker([facility.coords.x, facility.coords.y]).addTo(map);
+                const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
                 const userLocation = map.getCenter();
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
-                allHospitals.push({ name: facility.name, distance: distance, coords: facility.coords });
+                allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords });
             });
             // Sort the allHospitals array by distance
             allHospitals.sort(function(a, b) {
@@ -161,6 +175,7 @@ window.onload = function() {
             let directionsService = new google.maps.DirectionsService();
             closestHospitals.forEach(facility => {
                 let hospitalName = facility.name;
+				let hospitalToken = facility.token;
                 let hospitalCoords = facility.coords;
                 let hospitalLocation = new google.maps.LatLng(hospitalCoords.x, hospitalCoords.y);
                 let userLocation = map.getCenter();
@@ -178,6 +193,9 @@ window.onload = function() {
                         // Get the driving time from the result
                         const drivingTime = result.routes[0].legs[0].duration.text;
                         console.log(`It will take ${drivingTime} to drive from ${userLocation} to ${hospitalName}.`);
+						fetch("./API/getWaittime.php?hosp="+hospitalToken).then(x => x.text()).then((txt) => {
+							console.log(`There will be a ${txt} wait at ${hospitalName}.`);
+						})
                     }
                 });
                 // wait 10 ms before making the next request

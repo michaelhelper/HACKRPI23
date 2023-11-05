@@ -18,6 +18,6 @@ if (isset($_GET['hosp'])) {
 
 	$out = explode("Time until initial exam: <span class=\"bigstat\">", $html);
 	$out = explode("</span><br/><br/>", $out[1]);
-	die "{\"wait\": \"".$out[0]."\"}";
+	die ("{\"wait\": \"".$out[0]."\"}");
 }
 ?>
