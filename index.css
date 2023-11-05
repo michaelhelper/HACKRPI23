@@ -261,4 +261,11 @@ html, body {
         justify-content: center;
         width: fit-content;
     }
+    #search{
+        margin-top: 50px;
+        margin-right: 215px;
+    }
+    #hospital-list{
+        margin-top: 50px;
+    }
 }
