@@ -217,7 +217,7 @@ window.onload = function() {
                 let userLocation = {lat: User_lat, lng: User_lng};
                 // console.log(userLocation);
                 const facilityLocation = marker.getLatLng();
-                // console.log(facilityLocation);
+                console.log(facilityLocation);
                 const distance = calculateDistance(userLocation.lat, userLocation.lng, facilityLocation.lat, facilityLocation.lng);
                 // Add each hospital to the allHospitals array
                 allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn});

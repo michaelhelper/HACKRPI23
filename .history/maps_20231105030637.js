@@ -215,10 +215,9 @@ window.onload = function() {
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
                 let userLocation = {lat: User_lat, lng: User_lng};
-                // console.log(userLocation);
+                console.log(userLocation);
                 const facilityLocation = marker.getLatLng();
-                // console.log(facilityLocation);
-                const distance = calculateDistance(userLocation.lat, userLocation.lng, facilityLocation.lat, facilityLocation.lng);
+                const distance = userLocation
                 // Add each hospital to the allHospitals array
                 allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn});
             });

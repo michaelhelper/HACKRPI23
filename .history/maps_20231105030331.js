@@ -210,25 +210,7 @@ window.onload = function() {
     fetch(facilityList)
         .then(response => response.json())
         .then(data => {
-            data.hospitals.forEach(facility => {
-                const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
-                marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
-                // Get distance from user's location to each hospital
-                let userLocation = {lat: User_lat, lng: User_lng};
-                // console.log(userLocation);
-                const facilityLocation = marker.getLatLng();
-                // console.log(facilityLocation);
-                const distance = calculateDistance(userLocation.lat, userLocation.lng, facilityLocation.lat, facilityLocation.lng);
-                // Add each hospital to the allHospitals array
-                allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn});
-            });
-            // Sort the allHospitals array by distance
-            allHospitals.sort(function(a, b) {
-                return a.distance - b.distance;
-            });
-            for (let i = 0; i < 5; i++) {
-                closestHospitals.push(allHospitals[i]);
-            }
+            <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
             // Concatenate the names of the 5 closest hospitals
             const closestHospitalNames = allHospitals.slice(0, 5).map(hospital => hospital.name).join(', ');
             console.log(`The 5 closest hospitals are: ${closestHospitalNames}.`);

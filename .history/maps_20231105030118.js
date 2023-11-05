@@ -1,5 +1,5 @@
 let User_lat = 62.075829;
-let User_lng = -153.610133;
+let User_lng = 0;
 // Calculate the distance between two sets of coordinates using the Haversine formula.
 function calculateDistance(lat1, lng1, lat2, lng2) {
     const radius = 6371; // Earth's radius in kilometers
@@ -214,11 +214,9 @@ window.onload = function() {
                 const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
-                let userLocation = {lat: User_lat, lng: User_lng};
-                // console.log(userLocation);
+                let userLocation = google.maps.LatLng(User_lat, User_lng);
                 const facilityLocation = marker.getLatLng();
-                // console.log(facilityLocation);
-                const distance = calculateDistance(userLocation.lat, userLocation.lng, facilityLocation.lat, facilityLocation.lng);
+                const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
                 allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn});
             });
