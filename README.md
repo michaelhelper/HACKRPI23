@@ -35,7 +35,7 @@ Dataset: [Dataset](https://github.com/tfinnm/HospitalData/)
 ## Contributers
 ![Contributers](https://badges.pufler.dev/contributors/michaelhelper/HACKRPI23?size=50&padding=5&bots=true)
 
-##Explanations for prize categories:
+## Explanations for prize categories:
 ### Best in Patient Safety Tech
 Please See Above, this is intended to be used for patient safety, and is in my opinion, the best.
 ### Best Use of Google Cloud
