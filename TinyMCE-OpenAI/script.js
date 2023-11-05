@@ -1,5 +1,4 @@
 const api_key = "68r83o9poe4v486tnff0u32lv9esr7t53limuhtkbmuxm0n6"
-
    tinymce.init({
         selector: 'textarea',
         height: '700px',
@@ -24,11 +23,9 @@ const api_key = "68r83o9poe4v486tnff0u32lv9esr7t53limuhtkbmuxm0n6"
                             }
                         )
                     };
-
-
+           };
             respondWith.string((signal) => window.fetch('https://api.openai.com/v1/chat/completions', {
                         signal,
-                        ... openAiOptions
                     }).then(async (response) => {
                         if (response.ok) {
                             return response.json();
