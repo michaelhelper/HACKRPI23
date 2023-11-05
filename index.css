@@ -263,7 +263,7 @@ html, body {
     }
     #search{
         margin-top: 50px;
-        margin-right: 108px;
+        margin-right: 0;
     }
     #hospital-list{
         margin-top: 20px;
