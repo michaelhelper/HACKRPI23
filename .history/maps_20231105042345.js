@@ -155,7 +155,7 @@ window.onload = function() {
         });
     }
     // wait 10 ms before making the next request
-    setTimeout(function() {}, 10);
+    
 
 
     // Get location from zip code
