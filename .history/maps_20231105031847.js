@@ -1,5 +1,5 @@
-let user_lat = 61.217381;
-let user_lng = -149.863129;
+let User_lat = 62.075829;
+let User_lng = -153.610133;
 // Calculate the distance between two sets of coordinates using the Haversine formula.
 function calculateDistance(lat1, lng1, lat2, lng2) {
     const radius = 6371; // Earth's radius in kilometers
@@ -105,7 +105,7 @@ function createHospitalElement(hospital) {
         infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`;
     }
     infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`;
-    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><a href="https://www.google.com/maps/place/${hospital.address.replace(' ','+')}"><button>Go</button></a></div></div>`;
+    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><button>Go</button></div></div>`;
 
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
@@ -114,19 +114,47 @@ function createHospitalElement(hospital) {
     hospitalElement.appendChild(hospitalMain);
     hospitalElement.appendChild(infoElement);
 
+    
     return hospitalElement;
 }
 
-function allcodes(map){
-    
-    // Initialize allHospitals array
-    const allHospitals = [];
+
+
+
+window.onload = function() {
     // Create map
-    // const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const map = L.map('map').setView([42.734253, -73.672481], 11);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
+    // Initialize allHospitals array
+    const allHospitals = [];
+
+    // Get current location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            User_lat = lat;
+            User_lng = lng;
+            // Set the map view to the lat/long
+            map.setView([lat, lng], 11);
+			let userIcon = L.Icon.extend({
+				options: {
+					iconUrl: "./resources/images/person.png",
+					iconSize: [48,48],
+					popupAnchor:  [0, 0]
+				}
+			});
+			const marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(map);
+            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
+            const searchInput = document.getElementById('search-input');
+            searchInput.placeholder = 'Enter response here';
+        });
+    }
+
 
     // Get location from zip code
 
@@ -143,11 +171,11 @@ function allcodes(map){
             .then(data => {
                 const lat = data.results[0].geometry.location.lat;
                 const lng = data.results[0].geometry.location.lng;
+                User_lat = lat;
+                User_lng = lng;
                 // Set the map view to the lat/long
                 map.setView([lat, lng], 11);
                 alert(`The latitude is ${lat} and the longitude is ${lng}`);
-                user_lat = lat;
-                user_lng = lng;
             });
     }
 
@@ -185,9 +213,11 @@ function allcodes(map){
                 const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
-                const userLocation = map.getCenter();
+                let userLocation = {lat: User_lat, lng: User_lng};
+                // console.log(userLocation);
                 const facilityLocation = marker.getLatLng();
-                const distance = userLocation.distanceTo(facilityLocation);
+                // console.log(facilityLocation);
+                const distance = calculateDistance(userLocation.lat, userLocation.lng, facilityLocation.lat, facilityLocation.lng);
                 // Add each hospital to the allHospitals array
                 allHospitals.push({ name: facility.name, token: facility.token, distance: distance, coords: facility.coords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn});
             });
@@ -209,13 +239,13 @@ function allcodes(map){
                 let hospitalName = facility.name;
 				let hospitalToken = facility.token;
                 let hospitalCoords = facility.coords;
-                let hospitalLocation = new google.maps.LatLng(hospitalCoords.x, hospitalCoords.y);
-                
-                let userLocation = map.getCenter();
-                // use the user's location instead of the map center with thw same format as hospitalLocation
-                // let userLocation = new google.maps.LatLng(user_lat, user_lng);
+                let hospitalLocation = new google.maps.LatLng(facility.coords.x, facility.coords.y);
+                // let userLocation = map.getCenter();
+                // let userLocation = {lat: User_lat, lng: User_lng};
+                let userLocation = new google.maps.LatLng(User_lat, User_lng);
+                console.log(userLocation);
+                console.log(hospitalLocation);
 
-            
                 // Create a DirectionsRequest object
                 let request = {
                     origin: userLocation,
@@ -275,41 +305,37 @@ function allcodes(map){
                 const hospitalList = document.getElementById('hospital-list');
                 // wait 10 ms before making the next request
                 setTimeout(function() {}, 10);
+                // add a new element total wait time to the hospital object
+                // // wait time looks like this: {"wait": "0h 46m"}
+                // // driving time looks like this: drivingTime: "5 hours 36 mins"
+                // // total time looks like this: "6 hours 22 mins"    
+                // let waitTime = closestHospitals[counter].waitTime;
+                // let drivingTime = closestHospitals[counter].drivingTime;
+                // console.log(closestHospitals[counter]);
+                // console.log(closestHospitals[counter].drivingTime);
+                // console.log(drivingTime);
+                // console.log(waitTime);
+                // let waitTimeHours = parseInt(waitTime.substring(0, 1));
+                // let waitTimeMinutes = parseInt(waitTime.substring(3, 5));
+                // let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
+                // let drivingTimeMinutes = parseInt(drivingTime.substring(8, 10));
+                // let totalTimeHours = waitTimeHours + drivingTimeHours;
+                // let totalTimeMinutes = waitTimeMinutes + drivingTimeMinutes;
+                // if (totalTimeMinutes >= 60) {
+                //     totalTimeHours = totalTimeHours + 1;
+                //     totalTimeMinutes = totalTimeMinutes - 60;
+                // }
+                // let totalTime = totalTimeHours + " hours " + totalTimeMinutes + " mins";
+                // closestHospitals[counter].totalTime = totalTime;
+                // console.log(totalTime);
+                //sort the allHospitals array by total wait time
+                // allHospitals.sort(function(a, b) {
+                //     return a.totalTime - b.totalTime;
+                // });
+                // Add each hospital to the hospital-list
+
+                
             });
             counter = counter + 1;
         });
-}
-
-
-
-
-window.onload = function() {
-    const map = L.map('map').setView([user_lat, user_lng], 11);
-    // Get current location
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            user_lat = lat;
-            user_lng = lng;
-            // Set the map view to the lat/long
-            map.setView([lat, lng], 11);
-			let userIcon = L.Icon.extend({
-				options: {
-					iconUrl: "./resources/images/person.png",
-					iconSize: [48,48],
-					popupAnchor:  [0, 0]
-				}
-			});
-			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
-            //call allcodes
-            allcodes(map);
-            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
-            const searchInput = document.getElementById('search-input');
-            searchInput.placeholder = 'Enter response here';
-        });
-
-    }
-    //call allcodes
-    allcodes(map);
 }

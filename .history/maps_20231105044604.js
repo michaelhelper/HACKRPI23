@@ -105,7 +105,7 @@ function createHospitalElement(hospital) {
         infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`;
     }
     infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`;
-    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><a href="https://www.google.com/maps/place/${hospital.address.replace(' ','+')}"><button>Go</button></a></div></div>`;
+    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><button>Go</button></div></div>`;
 
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
@@ -117,7 +117,7 @@ function createHospitalElement(hospital) {
     return hospitalElement;
 }
 
-function allcodes(map){
+function allcodes(){
     
     // Initialize allHospitals array
     const allHospitals = [];
@@ -303,7 +303,7 @@ window.onload = function() {
 			});
 			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             //call allcodes
-            allcodes(map);
+            allcodes();
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
@@ -311,5 +311,5 @@ window.onload = function() {
 
     }
     //call allcodes
-    allcodes(map);
+    allcodes();
 }

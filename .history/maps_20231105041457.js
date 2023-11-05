@@ -53,7 +53,7 @@ function createHospitalElement(hospital) {
     hospitalMain.appendChild(nameElement);
     hospitalMain.appendChild(timeElement);
 
-    const infoElement = document.createElement("div");
+    const infoElement = document.createElement("p");
     infoElement.classList.add("hospital-info");
 
     const traumalvl = hospital.traumalvl;
@@ -75,7 +75,7 @@ function createHospitalElement(hospital) {
     var peds_rate = peds ? "This hospital has children specialists" : "";
 
     const perinatal = hospital.perinatal;
-    var perinatal_rate = perinatal ? "This hospital can deal with birth and newborn complications" : "";
+    var perinatal_rate = perinatal ? "This hospital can deal with birth and newbord complications" : "";
 
     const PCI = hospital.PCI;
     var PCI_rate = PCI ? "This hospital can handle heart attacks and heart problems" : "This hospital cannot handle heart attacks and heart problems";
@@ -96,16 +96,16 @@ function createHospitalElement(hospital) {
     var waitTime = hospital.waitTime;
 
 
-    infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`;
+    infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`
     if(peds_rate != ""){
-        infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`;
+        infoElement.innerHTML += `<p><b>Pediatric:</b>&nbsp;${peds_rate}</p>`
     }
-    infoElement.innerHTML += `<p><b>Stroke:</b>&nbsp;${stroke_rate}</p>`;
+    infoElement.innerHTML += `<p><b>Stroke:</b>&nbsp;${stroke_rate}</p>`
     if(perinatal_rate != ""){
-        infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`;
+        infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`
     }
-    infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`;
-    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><a href="https://www.google.com/maps/place/${hospital.address.replace(' ','+')}"><button>Go</button></a></div></div>`;
+    infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`
+    infoElement.innerHTML += `<p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p>`;
 
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
@@ -114,19 +114,47 @@ function createHospitalElement(hospital) {
     hospitalElement.appendChild(hospitalMain);
     hospitalElement.appendChild(infoElement);
 
+    
     return hospitalElement;
 }
 
-function allcodes(map){
-    
-    // Initialize allHospitals array
-    const allHospitals = [];
+
+
+
+window.onload = function() {
     // Create map
-    // const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const map = L.map('map').setView([47.7291949, -73.6795041], 11);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
+    // Initialize allHospitals array
+    const allHospitals = [];
+
+    // Get current location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            user_lat = lat;
+            user_lng = lng;
+            // Set the map view to the lat/long
+            map.setView([lat, lng], 11);
+			let userIcon = L.Icon.extend({
+				options: {
+					iconUrl: "./resources/images/person.png",
+					iconSize: [48,48],
+					popupAnchor:  [0, 0]
+				}
+			});
+			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
+            const searchInput = document.getElementById('search-input');
+            searchInput.placeholder = 'Enter response here';
+        });
+    }
+
 
     // Get location from zip code
 
@@ -185,7 +213,7 @@ function allcodes(map){
                 const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
-                const userLocation = map.getCenter();
+                const userLocation = 
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
@@ -210,11 +238,7 @@ function allcodes(map){
 				let hospitalToken = facility.token;
                 let hospitalCoords = facility.coords;
                 let hospitalLocation = new google.maps.LatLng(hospitalCoords.x, hospitalCoords.y);
-                
                 let userLocation = map.getCenter();
-                // use the user's location instead of the map center with thw same format as hospitalLocation
-                // let userLocation = new google.maps.LatLng(user_lat, user_lng);
-
             
                 // Create a DirectionsRequest object
                 let request = {
@@ -278,38 +302,4 @@ function allcodes(map){
             });
             counter = counter + 1;
         });
-}
-
-
-
-
-window.onload = function() {
-    const map = L.map('map').setView([user_lat, user_lng], 11);
-    // Get current location
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            user_lat = lat;
-            user_lng = lng;
-            // Set the map view to the lat/long
-            map.setView([lat, lng], 11);
-			let userIcon = L.Icon.extend({
-				options: {
-					iconUrl: "./resources/images/person.png",
-					iconSize: [48,48],
-					popupAnchor:  [0, 0]
-				}
-			});
-			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
-            //call allcodes
-            allcodes(map);
-            // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
-            const searchInput = document.getElementById('search-input');
-            searchInput.placeholder = 'Enter response here';
-        });
-
-    }
-    //call allcodes
-    allcodes(map);
 }
