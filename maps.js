@@ -55,7 +55,7 @@ function toggleHospital(element){
     })();
 }
 
-function createHospitalElement(hospital) {
+function createHospitalElement(hospital, map) {
     const hospitals = document.getElementsByClassName("hospital");
     if (hospitals.length > 4) {
         console.log(hospitals[0]);
@@ -135,6 +135,7 @@ function createHospitalElement(hospital) {
 
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
+		map.flyTo([hospital.x, hospital.y]);		
     }
 
     hospitalElement.appendChild(hospitalMain);
@@ -274,7 +275,7 @@ function allcodes(map){
                             }
                             newFinalArray.push({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address});
                             console.log(newFinalArray[counter]);
-                            const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address});
+                            const hospitalElement = createHospitalElement({name: hospitalName, token: hospitalToken, coords: hospitalCoords, traumalvl: facility.traumalvl, peds: facility.peds, perinatal: facility.perinatal, PCI: facility.PCI, stroke: facility.stroke, burn: facility.burn, drivingTime: drivingTime, waitTime: waitTime["wait"], totalTime: totalTimeHours + " hours " + totalTimeMinutes + " mins", address: facility.address, x: facility.coords.x, y: facility.coords.y}, map);
                             hospitalList.appendChild(hospitalElement);
 						})
                     }
