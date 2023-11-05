@@ -48,6 +48,8 @@ function createHospitalElement(hospital) {
 }
 
 
+
+
 window.onload = function() {
     // get current location
     if (navigator.geolocation) {
@@ -61,8 +63,6 @@ window.onload = function() {
         }
         );
     }
-
-
 // ----------------------------------------------------------------------------
     // get location from zip code
     const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0'; // Replace with your Google Maps API key
