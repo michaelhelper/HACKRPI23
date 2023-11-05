@@ -101,7 +101,8 @@ function createHospitalElement(hospital) {
 
     var driveTime = hospital.drivingTime;
     var waitTime = hospital.waitTime;
-
+    console.log(driveTime);
+    console.log(waitTime);
 
     infoElement.innerHTML += `<p><b>Trauma Level:</b>&nbsp;${traumalvl_rate}</p>`;
     if(peds_rate != ""){
