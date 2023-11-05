@@ -33,7 +33,7 @@ function toggleHospital(element){
     })();
 }
 
-ffunction createHospitalElement(hospital) {
+function createHospitalElement(hospital) {
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
     // add an onlick event that calls toggleHospital
