@@ -36,10 +36,13 @@ function toggleHospital(element){
 
 function createHospitalElement(hospital) {
     const hospitals = document.getElementsByClassName("hospital");
-    if (hospitals.length > 4) {
-        console.log(hospitals[0]);
+    if (hospitals.length > 0) {
+        console.log(hospitals[i]);
         hospitals[0].remove();
+    
     }
+
+    
 
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
