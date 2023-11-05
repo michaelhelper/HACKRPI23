@@ -307,7 +307,9 @@ function allcodes(map){
         });
     }
     setTimeout(function() {}, 100000);
-    for (let i = newFinalArray; i < newFinalArray+5; i++) {
+    
+    
+    for (let i = newFinalArray; i < 5; i++) {
         let hospitalList = document.getElementById('hospital-list');
         // wait for the array to be filled
         const hospitalElement = createHospitalElement(newFinalArray[i], map);

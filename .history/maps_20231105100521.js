@@ -3,6 +3,7 @@ let user_lng = -73.6794773;
 let theMap;
 let marker;
 let newFinalArray = [];
+let alwaysEmptyArray = [];
 let arry_start = 0;
 
 
@@ -302,18 +303,17 @@ function allcodes(map){
     // wait until the array is filled without using a timeout
     // sort the array by total time
     if (arry_start == 0){
-        newFinalArray.sort(function(a, b) {
-            return a.totalWaitInMinutes - b.totalWaitInMinutes;
-        });
-    }
+    newFinalArray.sort(function(a, b) {
+        return a.totalWaitInMinutes - b.totalWaitInMinutes;
+    });
     setTimeout(function() {}, 100000);
-    for (let i = newFinalArray; i < newFinalArray+5; i++) {
+    for (let i = 0; i < 5; i++) {
         let hospitalList = document.getElementById('hospital-list');
         // wait for the array to be filled
+        
         const hospitalElement = createHospitalElement(newFinalArray[i], map);
         hospitalList.appendChild(hospitalElement);
     }
-    arry_start += 5;
 }
 
 
@@ -360,5 +360,11 @@ function clickPress(event) {
 
 function zipcode() {
     // empty newFinalArray
+    // newFinalArray = []; does not work
+    // empty the array by setting it to a new array
+    newFinalArray = alwaysEmptyArray;
+    // Get the ZIP code from the form
+    // const zipCode = document.getElementById('search-input').value;
+    // alert(`The zip code is ${zipCode}`);
     convertZipCode();
 }
