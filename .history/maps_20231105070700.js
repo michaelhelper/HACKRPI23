@@ -205,7 +205,7 @@ function allcodes(map){
         .then(response => response.json())
         .then(data => {
             data.hospitals.forEach(facility => {
-                marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
+                const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
                 const userLocation = map.getCenter();
@@ -324,7 +324,7 @@ window.onload = function() {
 					popupAnchor:  [0, 0]
 				}
 			});
-			marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             
             //call allcodes
             allcodes(theMap);
