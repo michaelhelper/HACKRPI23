@@ -34,12 +34,15 @@ function toggleHospital(element){
     })();
 }
 
-function createHospitalElement(hospital) {
+function delete_hospitals(){
     const hospitals = document.getElementsByClassName("hospital");
     for (let i = 0; i < hospitals.length; i++) {
-    console.log(hospitals[i]);
-    hospitals[i].remove();
+        console.log(hospitals[i]);
+        hospitals[i].remove();
+    }
+}
 
+function createHospitalElement(hospital) {
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
     // add an onlick event that calls toggleHospital

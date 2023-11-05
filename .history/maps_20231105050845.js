@@ -34,6 +34,11 @@ function toggleHospital(element){
     })();
 }
 
+function delete_hospitals(){
+
+    }
+}
+
 function createHospitalElement(hospital) {
     const hospitals = document.getElementsByClassName("hospital");
     for (let i = 0; i < hospitals.length; i++) {
