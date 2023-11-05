@@ -78,6 +78,16 @@ window.onload = function() {
             const lng = position.coords.longitude;
             // Set the map view to the lat/long
             map.setView([lat, lng], 11);
+
+            var element = $("#search-input");
+            // get the original width and height of the element
+            var originalWidth = element.width();
+            // animate the width and height to twice their original values
+            element.animate({
+                width: "*=2", // multiply the width by 2
+            }, 500); // set the duration to 500 milliseconds
+            element.placeholder = 'Enter response here';
+
         });
     }
 
