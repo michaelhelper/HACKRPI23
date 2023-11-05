@@ -62,6 +62,8 @@ function createHospitalElement(hospital) {
 
 window.onload = function() {
     // Create map
+    "x": 42.734253, 
+    "y": -73.672481
     const map = L.map('map').setView([42.734253, -73.672481], 11);
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
