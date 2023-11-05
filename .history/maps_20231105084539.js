@@ -83,6 +83,7 @@ function createHospitalElement(hospital, map) {
 
     const nameElement = document.createElement("p");
     nameElement.classList.add("hospital-name");
+
    // console.log(hospital.name)
     const timeElement = document.createElement("p");
     timeElement.classList.add("hospital-time");
