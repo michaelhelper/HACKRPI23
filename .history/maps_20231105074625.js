@@ -299,14 +299,14 @@ function allcodes(map){
         });
     console.log(newFinalArray);
     // sort the array by total time
-    // newFinalArray.sort(function(a, b) {
-    //     return a.totalWaitInMinutes - b.totalWaitInMinutes;
-    // });
-    // for (let i = 0; i < 5; i++) {
-    //     let hospitalList = document.getElementById('hospital-list');
-    //     const hospitalElement = createHospitalElement(newFinalArray[i], map);
-    //     hospitalList.appendChild(hospitalElement);
-    // }
+    newFinalArray.sort(function(a, b) {
+        return a.totalWaitInMinutes - b.totalWaitInMinutes;
+    });
+    for (let i = 0; i < 5; i++) {
+        let hospitalList = document.getElementById('hospital-list');
+        const hospitalElement = createHospitalElement(newFinalArray[i], map);
+        hospitalList.appendChild(hospitalElement);
+    }
 }
 
 
