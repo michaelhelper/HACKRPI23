@@ -191,7 +191,7 @@ function allcodes(map){
     // });
 
     // Run through all hospitals in the facility list .json file and add them to the map
-    const facilityList = 'https://raw.githubusercontent.com/tfinnm/HospitalData/main/facilitydata.json';
+    const facilityList = './facilitydata.json';
     let closestHospitals = [];
 	let hospIcon = L.Icon.extend({
 		options: {

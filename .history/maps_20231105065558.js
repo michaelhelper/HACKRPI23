@@ -1,7 +1,6 @@
 let user_lat = 61.217381;
 let user_lng = -149.863129;
 let theMap;
-let marker;
 
 
 // Function to convert ZIP code to lat/long
@@ -17,19 +16,9 @@ function convertZipCode() {
             const lat = data.results[0].geometry.location.lat;
             const lng = data.results[0].geometry.location.lng;
             // Set the map view to the lat/long
-            theMap.setView([lat, lng], 11);
+            theMap.setView([lat, lng], 11)
             user_lat = lat;
             user_lng = lng;
-            // Create a marker at the lat/long
-            let userIcon = L.Icon.extend({
-                options: {
-                    iconUrl: "./resources/images/person.png",
-                    iconSize: [48,48],
-                    popupAnchor:  [0, 0]
-                }
-            });
-            marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(theMap);
-            allcodes(theMap);
         });
 }
 // Calculate the distance between two sets of coordinates using the Haversine formula.
@@ -191,7 +180,7 @@ function allcodes(map){
     // });
 
     // Run through all hospitals in the facility list .json file and add them to the map
-    const facilityList = 'https://raw.githubusercontent.com/tfinnm/HospitalData/main/facilitydata.json';
+    const facilityList = './facilitydata.json';
     let closestHospitals = [];
 	let hospIcon = L.Icon.extend({
 		options: {
@@ -206,7 +195,7 @@ function allcodes(map){
         .then(response => response.json())
         .then(data => {
             data.hospitals.forEach(facility => {
-                marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
+                const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
                 const userLocation = map.getCenter();
@@ -325,7 +314,7 @@ window.onload = function() {
 					popupAnchor:  [0, 0]
 				}
 			});
-			marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             
             //call allcodes
             allcodes(theMap);
@@ -334,8 +323,7 @@ window.onload = function() {
             searchInput.placeholder = 'Enter response here';
         });
     }
-    // wait 10 ms before making the next request
-    setTimeout(function() {}, 100);
+
     //call allcodes
     allcodes(theMap);
 }
@@ -351,4 +339,6 @@ function zipcode() {
     // const zipCode = document.getElementById('search-input').value;
     // alert(`The zip code is ${zipCode}`);
     convertZipCode();
+    setTimeout(function() {}, 1000);
+    allcodes();
 }

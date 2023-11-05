@@ -1,7 +1,5 @@
 let user_lat = 61.217381;
 let user_lng = -149.863129;
-let theMap;
-let marker;
 
 
 // Function to convert ZIP code to lat/long
@@ -17,19 +15,10 @@ function convertZipCode() {
             const lat = data.results[0].geometry.location.lat;
             const lng = data.results[0].geometry.location.lng;
             // Set the map view to the lat/long
-            theMap.setView([lat, lng], 11);
+            map.setView([lat, lng], 11);
+            alert(`The latitude is ${lat} and the longitude is ${lng}`);
             user_lat = lat;
             user_lng = lng;
-            // Create a marker at the lat/long
-            let userIcon = L.Icon.extend({
-                options: {
-                    iconUrl: "./resources/images/person.png",
-                    iconSize: [48,48],
-                    popupAnchor:  [0, 0]
-                }
-            });
-            marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(theMap);
-            allcodes(theMap);
         });
 }
 // Calculate the distance between two sets of coordinates using the Haversine formula.
@@ -191,7 +180,7 @@ function allcodes(map){
     // });
 
     // Run through all hospitals in the facility list .json file and add them to the map
-    const facilityList = 'https://raw.githubusercontent.com/tfinnm/HospitalData/main/facilitydata.json';
+    const facilityList = './facilitydata.json';
     let closestHospitals = [];
 	let hospIcon = L.Icon.extend({
 		options: {
@@ -206,7 +195,7 @@ function allcodes(map){
         .then(response => response.json())
         .then(data => {
             data.hospitals.forEach(facility => {
-                marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
+                const marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
                 const userLocation = map.getCenter();
@@ -308,7 +297,7 @@ function allcodes(map){
 
 
 window.onload = function() {
-    theMap = L.map('map').setView([user_lat, user_lng], 11);
+    const map = L.map('map').setView([user_lat, user_lng], 11);
     // Get current location
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -317,7 +306,7 @@ window.onload = function() {
             user_lat = lat;
             user_lng = lng;
             // Set the map view to the lat/long
-            theMap.setView([lat, lng], 11);
+            map.setView([lat, lng], 11);
 			let userIcon = L.Icon.extend({
 				options: {
 					iconUrl: "./resources/images/person.png",
@@ -325,30 +314,24 @@ window.onload = function() {
 					popupAnchor:  [0, 0]
 				}
 			});
-			marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             
             //call allcodes
-            allcodes(theMap);
+            allcodes(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
         });
     }
-    // wait 10 ms before making the next request
-    setTimeout(function() {}, 100);
+
     //call allcodes
-    allcodes(theMap);
+    allcodes(map);
 }
-
-function clickPress(event) {
-    if (event.keyCode == 13) {
-        zipcode(theMap);
-    }
-}
-
 function zipcode() {
     // Get the ZIP code from the form
-    // const zipCode = document.getElementById('search-input').value;
-    // alert(`The zip code is ${zipCode}`);
+    const zipCode = document.getElementById('search-input').value;
+    alert
     convertZipCode();
+    setTimeout(function() {}, 1000);
+    allcodes();
 }

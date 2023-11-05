@@ -29,7 +29,6 @@ function convertZipCode() {
                 }
             });
             marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(theMap);
-            allcodes(theMap);
         });
 }
 // Calculate the distance between two sets of coordinates using the Haversine formula.
@@ -191,7 +190,7 @@ function allcodes(map){
     // });
 
     // Run through all hospitals in the facility list .json file and add them to the map
-    const facilityList = 'https://raw.githubusercontent.com/tfinnm/HospitalData/main/facilitydata.json';
+    const facilityList = './facilitydata.json';
     let closestHospitals = [];
 	let hospIcon = L.Icon.extend({
 		options: {
@@ -325,7 +324,7 @@ window.onload = function() {
 					popupAnchor:  [0, 0]
 				}
 			});
-			marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
             
             //call allcodes
             allcodes(theMap);
@@ -334,8 +333,7 @@ window.onload = function() {
             searchInput.placeholder = 'Enter response here';
         });
     }
-    // wait 10 ms before making the next request
-    setTimeout(function() {}, 100);
+
     //call allcodes
     allcodes(theMap);
 }
@@ -351,4 +349,6 @@ function zipcode() {
     // const zipCode = document.getElementById('search-input').value;
     // alert(`The zip code is ${zipCode}`);
     convertZipCode();
+    setTimeout(function() {}, 1000);
+    allcodes();
 }

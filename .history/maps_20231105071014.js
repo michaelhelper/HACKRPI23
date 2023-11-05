@@ -29,8 +29,9 @@ function convertZipCode() {
                 }
             });
             marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(theMap);
-            allcodes(theMap);
         });
+    // call allcodes
+    
 }
 // Calculate the distance between two sets of coordinates using the Haversine formula.
 function calculateDistance(lat1, lng1, lat2, lng2) {
@@ -191,7 +192,7 @@ function allcodes(map){
     // });
 
     // Run through all hospitals in the facility list .json file and add them to the map
-    const facilityList = 'https://raw.githubusercontent.com/tfinnm/HospitalData/main/facilitydata.json';
+    const facilityList = './facilitydata.json';
     let closestHospitals = [];
 	let hospIcon = L.Icon.extend({
 		options: {
@@ -334,8 +335,7 @@ window.onload = function() {
             searchInput.placeholder = 'Enter response here';
         });
     }
-    // wait 10 ms before making the next request
-    setTimeout(function() {}, 100);
+
     //call allcodes
     allcodes(theMap);
 }
