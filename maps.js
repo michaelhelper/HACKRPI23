@@ -74,7 +74,7 @@ function createHospitalElement(hospital) {
     var peds_rate = peds ? "This hospital has children specialists" : "";
 
     const perinatal = hospital.perinatal;
-    var perinatal_rate = perinatal ? "This hospital can deal with birth and newbord complications" : "";
+    var perinatal_rate = perinatal ? "This hospital can deal with birth and newborn complications" : "";
 
     const PCI = hospital.PCI;
     var PCI_rate = PCI ? "This hospital can handle heart attacks and heart problems" : "This hospital cannot handle heart attacks and heart problems";
@@ -106,6 +106,7 @@ function createHospitalElement(hospital) {
     infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`
     infoElement.innerHTML += `<p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p>`;
 
+    infoElement.innerHTMl += `<button id="get-directions">Get Directions</button>`
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
     }

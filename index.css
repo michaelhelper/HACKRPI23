@@ -168,6 +168,7 @@ html, body {
 .hospital-time{
     display: flex;
     text-align: right;
+    margin-left: 10px;
 }
 
 .hospital-name{
@@ -195,4 +196,25 @@ html, body {
 .hospital-info p{
     margin-top: 0px;
     width: fit-content;
+}
+
+#get-directions{
+    display:flex;
+    justify-self: right;
+    background-color: var(--theme-3);
+    cursor: pointer;
+    margin: 0 0 0 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    width: 60px;
+    height: 40px;
+    color: var(--theme-0);
+}
+
+#get-directions:hover{
+    background-color: var(--theme-2);
 }
