@@ -210,7 +210,7 @@ function allcodes(map){
                 marker = L.marker([facility.coords.x, facility.coords.y], {icon: new hospIcon()}).addTo(map);
                 marker.bindPopup(`<b>${facility.name}</b><br>${facility.address}<br>`);
                 // Get distance from user's location to each hospital
-                const userLocation = map.google.maps.LatLng(user_lat, user_lng);
+                const userLocation = map.getCenter();
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
