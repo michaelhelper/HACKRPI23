@@ -257,9 +257,8 @@ window.onload = function() {
                 //     return a.totalTime - b.totalTime;
                 // });
                 // Add each hospital to the hospital-list
-                const hospitalElement = createHospitalElement(newFinalArray[counter]);
+                const hospitalElement = createHospitalElement();
                 hospitalList.appendChild(hospitalElement);
-                console.log(newFinalArray[counter]);
             });
             counter = counter + 1;
         });

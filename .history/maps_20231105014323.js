@@ -259,7 +259,6 @@ window.onload = function() {
                 // Add each hospital to the hospital-list
                 const hospitalElement = createHospitalElement(newFinalArray[counter]);
                 hospitalList.appendChild(hospitalElement);
-                console.log(newFinalArray[counter]);
             });
             counter = counter + 1;
         });
