@@ -239,9 +239,8 @@ window.onload = function() {
                 let hospitalCoords = facility.coords;
                 let hospitalLocation = new google.maps.LatLng(hospitalCoords.x, hospitalCoords.y);
                 
-                let userLocation = map.getCenter();
+                // let userLocation = map.getCenter();
                 // use the user's location instead of the map center with thw same format as hospitalLocation
-                // let userLocation = new google.maps.LatLng(user_lat, user_lng);
 
             
                 // Create a DirectionsRequest object
