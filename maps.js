@@ -34,6 +34,13 @@ function toggleHospital(element){
     })();
 }
 
+function delete_hospitals(){
+    const hospitals = document.getElementsByClassName("hospital");
+    for (let i = 0; i < hospitals.length; i++) {
+        hospitals[i].remove();
+    }
+}
+
 function createHospitalElement(hospital) {
     const hospitalElement = document.createElement("div");
     hospitalElement.classList.add("hospital");
@@ -302,6 +309,7 @@ window.onload = function() {
 				}
 			});
 			const marker = L.marker([user_lat, user_lng], {icon: new userIcon()}).addTo(map);
+            delete_hospitals();
             //call allcodes
             allcodes(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
@@ -311,5 +319,6 @@ window.onload = function() {
 
     }
     //call allcodes
+    delete_hospitals();
     allcodes(map);
 }
