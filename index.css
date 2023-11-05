@@ -29,7 +29,7 @@ body {
     display: flex;
     align-items: center;
     font-size: 3em;
-    font-weight: 900;
+    font-weight: 600;
     color: var(--theme-1);
     margin: 0 0 0 30px;
     background-color: var(--theme-0);
@@ -145,7 +145,7 @@ html, body {
     align-items: flex-start;
     justify-content: center;
     margin: 0 0 20px 80px;
-    width: 700px;
+    width: 500px;
     height: 70px;
     background-color: var(--theme-1);
     border-radius: 20px;
