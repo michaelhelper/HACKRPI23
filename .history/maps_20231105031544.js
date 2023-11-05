@@ -239,14 +239,10 @@ window.onload = function() {
                 let hospitalName = facility.name;
 				let hospitalToken = facility.token;
                 let hospitalCoords = facility.coords;
-                // let hospitalLocation = new google.maps.LatLng(facility.coords.x, facility.coords.y);
-                // lhospitalLocation = {lat: facility.coords.x, lng: facility.coords.y};
-                userLocation = map.getCenter();
-                // userLocation = {lat: User_lat, lng: User_lng};
-                userLocation = new google.maps.LatLng(User_lat, User_lng);
-                console.log(userLocation);
-                console.log(hospitalLocation);
-
+                let hospitalLocation = new google.maps.LatLng(hospitalCoords.x, hospitalCoords.y);
+                let userLocation = map.getCenter();
+                // let userLocation = {lat: User_lat, lng: User_lng};
+            
                 // Create a DirectionsRequest object
                 let request = {
                     origin: userLocation,
