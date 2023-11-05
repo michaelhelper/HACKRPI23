@@ -229,6 +229,8 @@ html, body {
     width: 60px;
     height: 40px;
     color: var(--theme-0);
+    /* remove link styling */
+    text-decoration: none;    
 }
 
 #get-direction button:hover{
