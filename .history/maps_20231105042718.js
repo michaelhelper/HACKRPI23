@@ -121,6 +121,13 @@ function createHospitalElement(hospital) {
 
 
 window.onload = function() {
+    // Create map
+    const map = L.map('map').setView([47.7291949, -73.6795041], 11);
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
     // Initialize allHospitals array
     const allHospitals = [];
 
@@ -146,14 +153,6 @@ window.onload = function() {
             searchInput.placeholder = 'Enter response here';
         });
     }
-
-    // Create map
-    const map = L.map('map').setView([47.7291949, -73.6795041], 11);
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
 
     // Get location from zip code
 
