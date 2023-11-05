@@ -12,7 +12,7 @@
             method: 'POST', 
             headers: {
               'Content-Type': 'application/json', 
-              'Authorization': `Bearer 68r83o9poe4v486tnff0u32lv9esr7t53limuhtkbmuxm0n6`
+              'Authorization': `Bearer ${API_KEY}`
             }, 
             body: JSON.stringify(
               {
@@ -35,7 +35,8 @@
             }).then(async(response) => {
                 if (response.ok){
                 return response.json(); 
-                } else {
+                } 
+                else {
                     return Promise.reject(`Failed to communicate with the OpenAI API. ${
                     await response.text()
                 }`);
@@ -47,6 +48,4 @@
                 data.error.message
             }`) : data).then((data) =>
                 data?.choices[0]?.message?.content?.trim()));
-        }
-    }
-);
+        };
