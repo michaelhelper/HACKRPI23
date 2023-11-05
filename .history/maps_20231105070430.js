@@ -23,6 +23,7 @@ function convertZipCode() {
             if (typeof marker !== 'undefined') {
                 theMap.removeLayer(marker);
             }
+            
             // Create a marker at the lat/long
             let userIcon = L.Icon.extend({
                 options: {
