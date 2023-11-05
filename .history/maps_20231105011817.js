@@ -224,7 +224,7 @@ window.onload = function() {
                 }
                 let totalTime = totalTimeHours + " hours " + totalTimeMinutes + " mins";
                 closestHospitals[counter].totalTime = totalTime;
-                console.log(totalTime);
+                console.log(totalTime)
                 //sort the allHospitals array by total wait time
                 // allHospitals.sort(function(a, b) {
                 //     return a.totalTime - b.totalTime;
