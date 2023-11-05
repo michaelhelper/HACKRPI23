@@ -312,9 +312,8 @@ function allcodes(map){
 
 
 
-// run after the page loads
-// 
-window.onload = function() {
+
+function() {
     theMap = L.map('map').setView([user_lat, user_lng], 11);
     // Get current location
     if (navigator.geolocation) {
