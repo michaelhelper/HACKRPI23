@@ -16,6 +16,8 @@
   <script src="./maps.js"></script>
   <style src="./style.css"></style>
   <script src="https://kit.fontawesome.com/91cf021679.js" crossorigin="anonymous"></script>
+<script src="https://cdn.tiny.cloud/1/68r83o9poe4v486tnff0u32lv9esr7t53limuhtkbmuxm0n6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="script.js"></script>
   <title>Emergency Room Compare</title>
 </head>
 <body>
@@ -46,43 +48,18 @@
         </div>
 
     </div>
+
+
+
+<body>
+    <textarea id="editor">
+          <h1>Title</h1>
+          <p>Content</p>
+    </textarea>
+</body>
+
+
 </body>
 
 </html>
 
-
-<script>
-const searchButton = document.getElementById("searc-button");
-const searchInput = document.getElementById("searc-input");
-const responseContainer = document.getElementById("response-container");
-
-// Define the GPT API endpoint URL
-const gptApiUrl = "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";
-
-searchButton.addEventListener("click", async () => {
-    // Get the text from the input element
-    const searchText = searchInput.value;
-
-    // Make a request to the GPT API
-    try {
-        const response = await fetch(gptApiUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ text: searchText }),
-        });
-
-        if (response.ok) {
-            const responseData = await response.json();
-
-            // Display the response in the response container
-            responseContainer.textContent = responseData.response;
-        } else {
-            console.error("Failed to fetch data from the GPT API");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-    }
-});
-</script>
