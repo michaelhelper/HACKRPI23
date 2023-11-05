@@ -1,5 +1,5 @@
 let user_lat = 42.729219;
-let user_lng = -73.6794773;
+let user_lng = -149.863129;
 let theMap;
 let marker;
 let newFinalArray = [];
