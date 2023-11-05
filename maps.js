@@ -131,7 +131,7 @@ function createHospitalElement(hospital) {
         infoElement.innerHTML += `<p><b>Birth:</b>&nbsp;${perinatal_rate}</p>`;
     }
     infoElement.innerHTML += `<p><b>Cardiac Center:</b>&nbsp;${PCI_rate}</p>`;
-    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><a href="https://www.google.com/maps/place/${hospital.address.replace(' ',',').replace(' ','+')}"><button>Go</button></a></div></div>`;
+    infoElement.innerHTML += `<div id="drive"><div id="drive-time"><p><b>Drive Time:</b>&nbsp;${driveTime}<br><b>Wait Time:</b>&nbsp;${waitTime}</p></div><div id="get-direction"><a target="_blank"href="https://www.google.com/maps/place/${hospital.address.replace(' ',',').replace(' ','+')}" target="_blank"><button>Go</button></a></div></div>`;
 
     hospitalElement.onclick = function() {
         toggleHospital(infoElement);
