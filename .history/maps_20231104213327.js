@@ -57,14 +57,14 @@ window.onload = function() {
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
-                allHospitals.push({ name: facility.name, distance: distance, coords: facility.coords });
+                allHospitals.push({ name: facility.name, distance: distance,  });
             });
             // Sort the allHospitals array by distance
             allHospitals.sort(function(a, b) {
                 return a.distance - b.distance;
             });
             for (let i = 0; i < 5; i++) {
-                closestHospitals.push(allHospitals[i]);
+                closestHospitals.push(facility);
             }
             // Concatenate the names of the 5 closest hospitals
             const closestHospitalNames = allHospitals.slice(0, 5).map(hospital => hospital.name).join(', ');
@@ -81,9 +81,7 @@ window.onload = function() {
                 let userLocation = map.getCenter();
                 let userCoords = userLocation.toString();
                 let userLocationString = userCoords.replace('LatLng(', '').replace(')', '');
-                // use distance matrix service instead
                 let distanceMatrixUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLocationString}&destinations=${hospitalLocation}&mode=driving&key=${apiKey}`;
-                // let distanceMatrixUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLocationString}&destinations=${hospitalLocation}&mode=driving&key=${apiKey}`;
                 console.log(distanceMatrixUrl);
                 fetch(distanceMatrixUrl)
                     .then(response => response.json())
@@ -94,4 +92,42 @@ window.onload = function() {
                     .catch(error => console.log(error));
             });
         });
+
+
+    // data.hospitals.forEach(facility => {
+    //     if(i < 5){
+    //     const hospitalElement = createHospitalElement(facility);
+    //     hospitalList.appendChild(hospitalElement);
+    //     i++;
+    //     }
+    // });
+
+    // console.log(closestHospitals);
+    // closestHospitals.forEach(facility => {
+    //     console.log(facility);
+    // });
+    // // console log the 5 closest hospitals
+    // console.log(closestHospitals.length);
+    // console.log(closestHospitals[0]);
+    // // For each of the 5 closest hospitals, query the API for the driving time between the user's location and each hospital using Google Distance Matrix
+    // for (let i = 0; i < 5; i++) {
+    //     console.log(closestHospitals[i]);
+    //     let facility = closestHospitals[0][i];
+    //     console.log(facility);
+    //     let hospitalName = facility.name;
+    //     let hospitalCoords = facility.coords;
+    //     let hospitalLocation = `${hospitalCoords.x},${hospitalCoords.y}`;
+    //     let userLocation = map.getCenter();
+    //     let userCoords = userLocation.toString();
+    //     let userLocationString = userCoords.replace('LatLng(', '').replace(')', '');
+    //     let distanceMatrixUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLocationString}&destinations=${hospitalLocation}&mode=driving&key=${apiKey}`;
+    //     console.log(distanceMatrixUrl);
+    //     fetch(distanceMatrixUrl)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             const drivingTime = data.rows[0].elements[0].duration.text;
+    //             console.log(`It will take ${drivingTime} to drive from ${userLocationString} to ${hospitalName}.`);
+    //         })
+    //         .catch(error => console.log(error));
+    // }
 }

@@ -45,7 +45,7 @@ window.onload = function() {
 
     // Run through all hospitals in the facility list .json file and add them to the map
     const facilityList = './facilitydata.json';
-    let closestHospitals = [];
+    const closestHospitals = [];
     fetch(facilityList)
         .then(response => response.json())
         .then(data => {
@@ -57,41 +57,39 @@ window.onload = function() {
                 const facilityLocation = marker.getLatLng();
                 const distance = userLocation.distanceTo(facilityLocation);
                 // Add each hospital to the allHospitals array
-                allHospitals.push({ name: facility.name, distance: distance, coords: facility.coords });
+                allHospitals.push({ name: facility.name, distance: distance });
             });
+
             // Sort the allHospitals array by distance
             allHospitals.sort(function(a, b) {
                 return a.distance - b.distance;
             });
-            for (let i = 0; i < 5; i++) {
-                closestHospitals.push(allHospitals[i]);
-            }
+
             // Concatenate the names of the 5 closest hospitals
             const closestHospitalNames = allHospitals.slice(0, 5).map(hospital => hospital.name).join(', ');
 
             // Add the 5 closest hospitals to the closestHospitals array
-            // use another meathod
+            closestHospitals.push(...allHospitals.slice(0, 5));
+
             console.log(`The 5 closest hospitals are: ${closestHospitalNames}.`);
-            console.log(closestHospitals);
-            closestHospitals.forEach(facility => {
-                // console log the driving time between the user's location and each hospital after calling the Google Distance Matrix API
-                let hospitalName = facility.name;
-                let hospitalCoords = facility.coords;
-                let hospitalLocation = `${hospitalCoords.x},${hospitalCoords.y}`;
-                let userLocation = map.getCenter();
-                let userCoords = userLocation.toString();
-                let userLocationString = userCoords.replace('LatLng(', '').replace(')', '');
-                // use distance matrix service instead
-                let distanceMatrixUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLocationString}&destinations=${hospitalLocation}&mode=driving&key=${apiKey}`;
-                // let distanceMatrixUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLocationString}&destinations=${hospitalLocation}&mode=driving&key=${apiKey}`;
-                console.log(distanceMatrixUrl);
-                fetch(distanceMatrixUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        const drivingTime = data.rows[0].elements[0].duration.text;
-                        console.log(`It will take ${drivingTime} to drive from ${userLocationString} to ${hospitalName}.`);
-                    })
-                    .catch(error => console.log(error));
-            });
         });
+    //
+    // For each of the 5 closest hospitals, query the API for the driving time between the user's location and each hospital using Google Distance Matrix
+    closestHospitals.slice(0, 5).forEach(hospital => {
+        const hospitalName = hospital.name;
+        const hospitalCoords = hospital.coords;
+        const hospitalLocation = `${hospitalCoords.x},${hospitalCoords.y}`;
+        const userLocation = map.getCenter();
+        const userCoords = userLocation.toString();
+        const userLocationString = userCoords.replace('LatLng(', '').replace(')', '');
+        const distanceMatrixUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLocationString}&destinations=${hospitalLocation}&mode=driving&key=${apiKey}`;
+        console.log(distanceMatrixUrl);
+
+        fetch(distanceMatrixUrl)
+            .then(response => response.json())
+            .then(data => {
+                const drivingTime = data.rows[0].elements[0].duration.text;
+                console.log(`It will take ${drivingTime} to drive from ${userLocationString} to ${hospitalName}.`);
+            });
+    });
 }
