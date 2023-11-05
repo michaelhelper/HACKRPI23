@@ -78,14 +78,6 @@ window.onload = function() {
             const lng = position.coords.longitude;
             // Set the map view to the lat/long
             map.setView([lat, lng], 11);
-			let userIcon = L.Icon.extend({
-				options: {
-					iconUrl: "./resources/images/person.png",
-					iconSize: [48,48],
-					popupAnchor:  [0, 0]
-				}
-			});
-			const marker = L.marker([lat, lng], {icon: new userIcon()}).addTo(map);
             // Make the input field 2.5 times wider and replace the temp text with "Enter response here"
             const searchInput = document.getElementById('search-input');
             searchInput.placeholder = 'Enter response here';
@@ -135,6 +127,13 @@ window.onload = function() {
 	let hospIcon = L.Icon.extend({
 		options: {
 			iconUrl: "./resources/images/hospital.png",
+			iconSize: [48,48],
+			popupAnchor:  [0, 0]
+		}
+	});
+	let userIcon = L.Icon.extend({
+		options: {
+			iconUrl: "./resources/images/person.png",
 			iconSize: [48,48],
 			popupAnchor:  [0, 0]
 		}
@@ -192,9 +191,7 @@ window.onload = function() {
 						fetch("./API/getWaittime.php?hosp="+hospitalToken).then(x => x.text()).then((txt) => {
 							console.log(`There will be a ${txt} wait at ${hospitalName}.`);
                             // add the wait time to the hospital object
-                            // wait time looks like this: {"wait": "0h 46m"}
-                            let waitTime = JSON.parse(txt);
-                            facility.waitTime = waitTime["wait"];
+                            facility.waitTime = txt;
 						})
                     }
                 });
@@ -207,8 +204,6 @@ window.onload = function() {
                 // total time looks like this: "6 hours 22 mins"    
                 let waitTime = facility.waitTime;
                 let drivingTime = facility.drivingTime;
-                console.log(waitTime);
-                console.log(drivingTime);
                 let waitTimeHours = parseInt(waitTime.substring(0, 1));
                 let waitTimeMinutes = parseInt(waitTime.substring(3, 5));
                 let drivingTimeHours = parseInt(drivingTime.substring(0, 1));
@@ -221,11 +216,12 @@ window.onload = function() {
                 }
                 let totalTime = totalTimeHours + " hours " + totalTimeMinutes + " mins";
                 facility.totalTime = totalTime;
-                console.log(facility)
+                console.log(fa)
                 //sort the allHospitals array by total wait time
                 // allHospitals.sort(function(a, b) {
                 //     return a.totalTime - b.totalTime;
                 // });
+                console.log(allHospitals);
                 // Add each hospital to the hospital-list
                 const hospitalElement = createHospitalElement(facility);
                 hospitalList.appendChild(hospitalElement);

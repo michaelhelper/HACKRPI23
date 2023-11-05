@@ -193,8 +193,8 @@ window.onload = function() {
 							console.log(`There will be a ${txt} wait at ${hospitalName}.`);
                             // add the wait time to the hospital object
                             // wait time looks like this: {"wait": "0h 46m"}
-                            let waitTime = JSON.parse(txt);
-                            facility.waitTime = waitTime["wait"];
+                            let waitTime = JSON
+                            facility.waitTime = txt.wait;
 						})
                     }
                 });
