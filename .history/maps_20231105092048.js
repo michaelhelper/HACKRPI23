@@ -2,7 +2,6 @@ let user_lat = 42.729219;
 let user_lng = -73.6794773;
 let theMap;
 let marker;
-let newFinalArray = [];
 
 
 // Function to convert ZIP code to lat/long
@@ -162,7 +161,7 @@ function createHospitalElement(hospital, map) {
 }
 
 function allcodes(map){
-    newFinalArray = [];
+
     const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0';
     
     // Initialize allHospitals array

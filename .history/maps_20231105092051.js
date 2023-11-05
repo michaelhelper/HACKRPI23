@@ -162,7 +162,7 @@ function createHospitalElement(hospital, map) {
 }
 
 function allcodes(map){
-    newFinalArray = [];
+
     const apiKey = 'AIzaSyA3Jn3hJdL2dFsXI8MkE9FWK8rj4jWMae0';
     
     // Initialize allHospitals array
