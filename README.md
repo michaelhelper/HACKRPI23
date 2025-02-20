@@ -1,4 +1,6 @@
-# ~~http://EmergencyRoom.Compare/~~ https://hackrpi-23.vercel.app (Due to google cloud credits running out the current project has limited functionality)
+# ~~http://EmergencyRoom.Compare/~~ (The domain registration has run out)
+# https://hackrpi-23.vercel.app 
+# (Due to google cloud credits running out the current project has limited functionality)
 With emergency rooms becoming more and more crowded, long waits are becoming an ever more common occurrence. With our website, you can know in advance when to go further away to be seen faster.
 ![Demo Gif](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/655/302/datas/original.gif)
 
